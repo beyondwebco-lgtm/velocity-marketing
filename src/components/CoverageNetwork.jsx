@@ -16,10 +16,10 @@ export const CoverageNetwork = ({ onOpenQuote }) => {
           <div className="space-y-4 max-w-2xl">
             <div className="inline-flex items-center space-x-2 text-xs font-mono uppercase tracking-widest text-blue-700 font-bold">
               <MapPin className="w-3.5 h-3.5" />
-              <span>Operational Dominance</span>
+              <span>{COVERAGE_SECTION.label}</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
-              {COVERAGE_SECTION.heading.toUpperCase()}.
+              {COVERAGE_SECTION.heading}
             </h2>
           </div>
           <p className="text-slate-700 text-sm sm:text-base max-w-md font-normal leading-relaxed">
@@ -88,9 +88,6 @@ export const CoverageNetwork = ({ onOpenQuote }) => {
                   </div>
                 </div>
 
-                <p className="text-slate-700 text-sm font-normal">
-                    {COVERAGE_SECTION.footer}
-                </p>
 
                 {/* State-wide Coverage Pills */}
                 <div className="space-y-3">
@@ -131,6 +128,28 @@ export const CoverageNetwork = ({ onOpenQuote }) => {
             </AnimatePresence>
           </div>
 
+        </div>
+
+        {/* PAN India Section */}
+        <div className="mt-20 pt-16 border-t border-slate-200 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div>
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-4">
+              {COVERAGE_SECTION.panIndiaHeading}
+            </h2>
+            <p className="text-slate-700 text-sm sm:text-base whitespace-pre-line leading-relaxed">
+              {COVERAGE_SECTION.panIndiaContent}
+            </p>
+          </div>
+          <div className="flex justify-end">
+             <div className="p-6 bg-slate-50 border border-slate-200 rounded-3xl w-full max-w-sm">
+                <div className="text-xs font-mono text-slate-500 font-bold mb-4 uppercase tracking-widest">Available Nationwide</div>
+                <div className="space-y-3">
+                  <div className="flex items-center space-x-3"><CheckCircle2 className="w-5 h-5 text-blue-600"/> <span className="text-sm font-bold text-slate-700">Metro Cities</span></div>
+                  <div className="flex items-center space-x-3"><CheckCircle2 className="w-5 h-5 text-blue-600"/> <span className="text-sm font-bold text-slate-700">Tier-2 Markets</span></div>
+                  <div className="flex items-center space-x-3"><CheckCircle2 className="w-5 h-5 text-blue-600"/> <span className="text-sm font-bold text-slate-700">Tier-3 Locations</span></div>
+                </div>
+             </div>
+          </div>
         </div>
 
       </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { SERVICES } from '../data/contentData';
-import { Sparkles, ShoppingBag, ShieldCheck, Users, ArrowUpRight, Check, ChevronRight } from 'lucide-react';
+import { SERVICES, SERVICES_SECTION } from '../data/contentData';
+import { Sparkles, ShoppingBag, ShieldCheck, Users, ArrowUpRight, Check, ChevronRight, MapPin, Calendar, Smartphone, PenTool, BarChart3, Truck } from 'lucide-react';
 import { MotionSection, MotionGrid, MotionCard } from './MotionWrapper';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -9,6 +9,12 @@ const iconMap = {
   ShoppingBag: ShoppingBag,
   ShieldCheck: ShieldCheck,
   Users: Users,
+  MapPin: MapPin,
+  Calendar: Calendar,
+  Smartphone: Smartphone,
+  PenTool: PenTool,
+  BarChart3: BarChart3,
+  Truck: Truck,
 };
 
 export const Services = ({ onOpenQuote }) => {
@@ -26,15 +32,14 @@ export const Services = ({ onOpenQuote }) => {
           <div className="space-y-4 max-w-2xl">
             <div className="inline-flex items-center space-x-2 text-xs font-mono uppercase tracking-widest text-blue-700 font-bold">
               <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
-              <span>Full-Spectrum Capabilities</span>
+              <span>{SERVICES_SECTION.label}</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
-              PRECISION EXECUTION. <br />
-              <span className="text-gradient-blue">AT EVERY TOUCHPOINT.</span>
+              {SERVICES_SECTION.heading}
             </h2>
           </div>
           <p className="text-slate-700 text-sm sm:text-base max-w-md font-normal leading-relaxed">
-            We bridge the gap between strategic brand vision and real-world execution through our core operational verticals.
+            {SERVICES_SECTION.intro}
           </p>
         </div>
 
@@ -61,10 +66,10 @@ export const Services = ({ onOpenQuote }) => {
                   </div>
                   <div>
                     <div className={`text-xs font-mono uppercase tracking-wider mb-1 font-bold ${isActive ? 'text-blue-100' : 'text-blue-700'}`}>
-                      {service.category}
+                      {service.id}
                     </div>
                     <h3 className={`font-bold text-base ${isActive ? 'text-white' : 'text-slate-900'}`}>{service.title}</h3>
-                    <p className={`text-xs mt-1 line-clamp-1 ${isActive ? 'text-blue-100 font-normal' : 'text-slate-600 font-normal'}`}>{service.tagline}</p>
+                    <p className={`text-xs mt-1 line-clamp-2 ${isActive ? 'text-blue-100 font-normal' : 'text-slate-600 font-normal'}`}>{service.shortDesc}</p>
                   </div>
                 </button>
               );
@@ -86,13 +91,13 @@ export const Services = ({ onOpenQuote }) => {
                 <div className="flex items-center justify-between border-b border-slate-200 pb-6">
                   <div>
                     <span className="text-xs font-mono text-blue-700 uppercase tracking-widest font-bold">
-                      ACTIVE VERTICAL: {activeServiceGroup.category}
+                      SERVICE {activeServiceGroup.id}
                     </span>
                     <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">
                       {activeServiceGroup.title}
                     </h3>
                     <p className="text-slate-700 text-sm mt-2 font-normal">
-                      {activeServiceGroup.tagline}
+                      {activeServiceGroup.shortDesc}
                     </p>
                   </div>
                   <button
@@ -109,22 +114,15 @@ export const Services = ({ onOpenQuote }) => {
                   {activeServiceGroup.items.map((item, idx) => (
                     <MotionCard key={idx}>
                       <div
-                        onClick={() => setSelectedServiceItem(item)}
-                        className="p-5 rounded-2xl bg-white border border-slate-200 hover:border-blue-500 hover:bg-blue-50/50 transition-all duration-300 group cursor-pointer shadow-sm h-full flex flex-col justify-between"
+                        className="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm h-full flex flex-col justify-center"
                       >
-                        <div>
-                          <div className="flex items-center justify-between mb-3">
-                            <div className="w-8 h-8 rounded-lg bg-blue-100 text-blue-800 flex items-center justify-center font-mono text-xs font-bold">
-                              0{idx + 1}
-                            </div>
-                            <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all" />
+                        <div className="flex items-center space-x-3">
+                          <div className="w-6 h-6 rounded bg-blue-100 text-blue-800 flex items-center justify-center font-mono text-xs font-bold flex-shrink-0">
+                            <Check className="w-3 h-3" />
                           </div>
-                          <h4 className="font-bold text-slate-900 text-base group-hover:text-blue-700 transition-colors">
-                            {item.name}
+                          <h4 className="font-bold text-slate-900 text-sm">
+                            {item}
                           </h4>
-                          <p className="text-xs text-slate-600 mt-2 font-normal leading-relaxed">
-                            {item.desc}
-                          </p>
                         </div>
                       </div>
                     </MotionCard>
@@ -152,64 +150,7 @@ export const Services = ({ onOpenQuote }) => {
 
       </div>
 
-      {/* Modal for Service Item Deep Dive */}
-      <AnimatePresence>
-        {selectedServiceItem && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-6"
-          >
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="bg-white max-w-lg w-full rounded-3xl p-8 border border-slate-200 shadow-2xl relative space-y-6 text-slate-900"
-            >
-              <button
-                onClick={() => setSelectedServiceItem(null)}
-                className="absolute top-6 right-6 p-2 rounded-full text-slate-500 hover:text-slate-900 bg-slate-100"
-              >
-                ✕
-              </button>
-              <div className="text-xs font-mono text-blue-700 font-bold uppercase tracking-widest">
-                SERVICE SPECIFICATION
-              </div>
-              <h3 className="text-2xl font-bold text-slate-900">{selectedServiceItem.name}</h3>
-              <p className="text-slate-700 text-sm leading-relaxed font-normal">
-                {selectedServiceItem.desc}
-              </p>
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-2.5 text-xs font-mono text-slate-800 font-medium">
-                <div className="flex items-center space-x-2">
-                  <span className="text-blue-600 font-bold">✓</span>
-                  <span>Deployment SLA: 24 to 48 Hours</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <span className="text-blue-600 font-bold">✓</span>
-                  <span>South India & PAN India Operational Coverage</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <span className="text-blue-600 font-bold">✓</span>
-                  <span>Live Photo Proof & GPS Audit Dashboard Included</span>
-                </div>
-              </div>
-              <div className="flex space-x-4">
-                <button
-                  onClick={() => {
-                    setSelectedServiceItem(null);
-                    onOpenQuote();
-                  }}
-                  className="flex-1 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-center text-sm shadow-md"
-                >
-                  Inquire For This Service
-                </button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+
     </MotionSection>
   );
 };

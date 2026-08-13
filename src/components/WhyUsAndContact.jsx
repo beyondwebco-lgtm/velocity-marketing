@@ -13,12 +13,14 @@ export const WhyUsAndContact = ({ onOpenQuote }) => {
           <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
             <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-blue-100 border border-blue-200 text-xs font-mono text-blue-800 uppercase tracking-widest font-bold">
               <ShieldCheck className="w-3.5 h-3.5 text-blue-600" />
-              <span>Operational Advantage</span>
+              <span>WHY VELOCITY</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
-              WHY CLIENTS CHOOSE <br />
-              <span className="text-gradient-blue">VELOCITY MARKETING.</span>
+              Execution That Delivers Results
             </h2>
+            <p className="text-slate-700 text-sm sm:text-base max-w-2xl mx-auto font-normal leading-relaxed mt-4">
+              Successful marketing requires more than a strong idea—it requires disciplined execution. Velocity Marketing combines experienced field teams, nationwide operational capability, dedicated project management, and technology-enabled reporting to deliver campaigns with speed, precision, and accountability.
+            </p>
           </div>
 
           <MotionGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" staggerDelay={0.1}>
@@ -45,7 +47,7 @@ export const WhyUsAndContact = ({ onOpenQuote }) => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
             <div className="lg:col-span-8 space-y-5">
               <h3 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-                {CTA_SECTION.heading.toUpperCase()}.
+                {CTA_SECTION.heading}
               </h3>
               <p className="text-blue-50 text-base font-normal max-w-2xl leading-relaxed">
                 {CTA_SECTION.description}

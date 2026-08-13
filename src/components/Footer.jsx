@@ -21,18 +21,29 @@ export const Footer = ({ onOpenQuote }) => {
               </span>
             </a>
             <p className="text-slate-300 text-sm leading-relaxed max-w-sm font-normal">
-              {COMPANY_INFO.heroSubText}
+              Integrated marketing execution solutions across brand activation, retail marketing, merchandising, events, outdoor activations, branding, analytics, and campaign operations.
             </p>
-            <div className="flex items-center space-x-3 text-xs font-mono text-emerald-400 font-bold">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-              <span>SOUTH INDIA OPERATIONAL LEADERSHIP</span>
+          </div>
+
+          {/* Quick Links */}
+          <div className="lg:col-span-2 space-y-4">
+            <div className="text-xs font-mono text-white uppercase tracking-widest font-bold">
+              Quick Links
             </div>
+            <ul className="space-y-2.5 text-xs text-slate-300 font-medium">
+              <li><a href="#" className="hover:text-blue-400 transition-colors">Home</a></li>
+              <li><a href="#about" className="hover:text-blue-400 transition-colors">About Us</a></li>
+              <li><a href="#services" className="hover:text-blue-400 transition-colors">Services</a></li>
+              <li><a href="#industries" className="hover:text-blue-400 transition-colors">Industries</a></li>
+              <li><a href="#coverage" className="hover:text-blue-400 transition-colors">Our Reach</a></li>
+              <li><a href="#contact" className="hover:text-blue-400 transition-colors">Contact Us</a></li>
+            </ul>
           </div>
 
           {/* Core Services Links */}
           <div className="lg:col-span-3 space-y-4">
             <div className="text-xs font-mono text-white uppercase tracking-widest font-bold">
-              Core Capabilities
+              Services
             </div>
             <ul className="space-y-2.5 text-xs text-slate-300 font-medium">
               {SERVICES.map((s) => (
@@ -42,23 +53,7 @@ export const Footer = ({ onOpenQuote }) => {
                   </a>
                 </li>
               ))}
-              <li><a href="#tech-platform" className="hover:text-blue-400 transition-colors">GPS & Live Photo Audit Tech</a></li>
-              <li><a href="#estimator" className="hover:text-blue-400 transition-colors">Campaign Estimator Tool</a></li>
             </ul>
-          </div>
-
-          {/* Coverage Regions */}
-          <div className="lg:col-span-3 space-y-4">
-            <div className="text-xs font-mono text-white uppercase tracking-widest font-bold">
-              Key Hubs & Regions
-            </div>
-            <div className="flex flex-wrap gap-1.5 text-[11px] font-mono font-medium">
-              {["Bengaluru HQ", "Hyderabad", "Chennai", "Vijayawada", "Visakhapatnam", "Coimbatore", "Mysuru", "Kochi", "Kerala", "Karnataka", "Tamil Nadu", "Telangana", "Andhra Pradesh"].map((hub, idx) => (
-                <span key={idx} className="px-2 py-1 rounded bg-slate-800 text-slate-200 border border-slate-700">
-                  {hub}
-                </span>
-              ))}
-            </div>
           </div>
 
           {/* Contact Direct */}

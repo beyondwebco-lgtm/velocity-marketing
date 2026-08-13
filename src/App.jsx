@@ -10,6 +10,9 @@ import { CampaignEstimator } from './components/CampaignEstimator';
 import { WhyUsAndContact } from './components/WhyUsAndContact';
 import { ProposalModal } from './components/ProposalModal';
 import { Footer } from './components/Footer';
+import { AboutSection } from './components/AboutSection';
+import { ProcessAndTouchpoints } from './components/ProcessAndTouchpoints';
+import { IndustriesGrid } from './components/IndustriesGrid';
 
 export function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -37,10 +40,13 @@ export function App() {
       {/* Main Content Sections */}
       <main>
         <Hero onOpenQuote={handleOpenQuote} />
-        <Services onOpenQuote={handleOpenQuote} />
-        <TechPlatform />
-        <CoverageNetwork onOpenQuote={handleOpenQuote} />
         <ClientEcosystem onOpenQuote={handleOpenQuote} />
+        <AboutSection />
+        <Services onOpenQuote={handleOpenQuote} />
+        <IndustriesGrid />
+        <CoverageNetwork onOpenQuote={handleOpenQuote} />
+        <ProcessAndTouchpoints />
+        <TechPlatform />
         <CampaignEstimator onOpenQuote={handleOpenQuote} />
         <WhyUsAndContact onOpenQuote={handleOpenQuote} />
       </main>

@@ -81,7 +81,7 @@ export const Hero = ({ onOpenQuote }) => {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75" />
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-600" />
               </span>
-              <span>Next-Gen BTL &amp; Brand Activation Engine</span>
+              <span>{COMPANY_INFO.heroLabel}</span>
             </div>
           </motion.div>
 
@@ -90,10 +90,10 @@ export const Hero = ({ onOpenQuote }) => {
             variants={staggerItem}
             className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight leading-[1.05] text-slate-900"
           >
-            {COMPANY_INFO.tagline.split('—')[0].trim()}.{' '}
+            {COMPANY_INFO.heroHeading.split('.')[0]}.{' '}
             <br className="hidden sm:block" />
             <span className="text-gradient-blue font-black">
-              {COMPANY_INFO.tagline.split('—')[1].trim()}.
+              {COMPANY_INFO.heroHeading.split('.')[1]}.
             </span>
           </motion.h1>
 
@@ -102,7 +102,7 @@ export const Hero = ({ onOpenQuote }) => {
             variants={staggerItem}
             className="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto font-normal leading-relaxed"
           >
-            {COMPANY_INFO.heroSubText}
+            {COMPANY_INFO.heroDescription}
           </motion.p>
 
           {/* CTA Group */}
@@ -114,7 +114,7 @@ export const Hero = ({ onOpenQuote }) => {
               onClick={onOpenQuote}
               className="group px-8 py-4 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-base shadow-xl shadow-blue-600/25 hover:shadow-blue-600/40 hover:scale-[1.03] transition-all duration-300 flex items-center space-x-3"
             >
-              <span>Request Campaign Proposal</span>
+              <span>{COMPANY_INFO.primaryCta}</span>
               <ArrowUpRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </button>
 
@@ -123,7 +123,7 @@ export const Hero = ({ onOpenQuote }) => {
               className="px-7 py-4 rounded-full bg-white/80 backdrop-blur-md hover:bg-white text-slate-900 font-bold text-base transition-all duration-300 flex items-center space-x-2 border border-slate-200 shadow-sm hover:shadow-md"
             >
               <Sparkles className="w-4 h-4 text-blue-600" />
-              <span>Explore Our Services</span>
+              <span>{COMPANY_INFO.secondaryCta}</span>
             </a>
           </motion.div>
 
@@ -132,11 +132,7 @@ export const Hero = ({ onOpenQuote }) => {
             variants={staggerItem}
             className="pt-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-xs font-mono text-slate-600"
           >
-            {[
-              'Under 48h Mobilization',
-              'Live GPS Field Audit',
-              '100% Permitting Clearance'
-            ].map((text) => (
+            {COMPANY_INFO.trustIndicators.map((text) => (
               <div key={text} className="flex items-center space-x-2">
                 <CheckCircle2 className="w-4 h-4 text-blue-600 flex-shrink-0" />
                 <span className="font-bold">{text}</span>
