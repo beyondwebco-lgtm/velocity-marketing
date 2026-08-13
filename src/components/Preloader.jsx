@@ -12,7 +12,7 @@ export const Preloader = ({ onLoaded }) => {
         {/* Brand Logo Image with Glow */}
         <div className="w-28 h-28 rounded-2xl bg-white p-2.5 shadow-2xl shadow-blue-500/50 border border-blue-400/50 flex items-center justify-center overflow-hidden z-10 animate-bounce">
           <img
-            src="/assets/brand-logo.jpeg"
+            src="/assets/Logo.jpeg"
             alt="Velocity Marketing Logo"
             className="w-full h-full object-contain"
           />

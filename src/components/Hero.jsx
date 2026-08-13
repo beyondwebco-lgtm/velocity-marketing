@@ -139,6 +139,23 @@ export const Hero = ({ onOpenQuote }) => {
               </div>
             ))}
           </motion.div>
+
+          {/* Company Video Container */}
+          <motion.div
+            variants={staggerItem}
+            className="mt-12 flex justify-center w-full max-w-3xl mx-auto rounded-2xl overflow-hidden shadow-2xl shadow-blue-900/20 border border-slate-200/50"
+          >
+            <video 
+              autoPlay 
+              loop 
+              muted 
+              playsInline 
+              className="w-full h-auto object-cover"
+            >
+              <source src="/assets/Company_Logo.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </motion.div>
         </motion.div>
 
         {/* ── Metrics Ribbon ── */}
