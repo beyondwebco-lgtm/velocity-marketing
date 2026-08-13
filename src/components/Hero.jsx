@@ -1,7 +1,7 @@
 import React from 'react';
 import { ArrowUpRight, CheckCircle2, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { METRICS } from '../data/contentData';
+import { METRICS, COMPANY_INFO } from '../data/contentData';
 import { CountUp } from './CountUp';
 import WebThreads from './WebThreads';
 
@@ -88,12 +88,12 @@ export const Hero = ({ onOpenQuote }) => {
           {/* Main Headline */}
           <motion.h1
             variants={staggerItem}
-            className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tight leading-[1.05] text-slate-900"
+            className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight leading-[1.05] text-slate-900"
           >
-            BRANDS IN MOTION.{' '}
+            {COMPANY_INFO.tagline.split('—')[0].trim()}.{' '}
             <br className="hidden sm:block" />
             <span className="text-gradient-blue font-black">
-              EXPERIENCES THAT MOVE PEOPLE.
+              {COMPANY_INFO.tagline.split('—')[1].trim()}.
             </span>
           </motion.h1>
 
@@ -102,9 +102,7 @@ export const Hero = ({ onOpenQuote }) => {
             variants={staggerItem}
             className="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto font-normal leading-relaxed"
           >
-            Velocity transforms strategic marketing into powerful real-world execution.
-            From high-impact mall activations and product sampling to turnkey POSM deployment across{' '}
-            <span className="text-blue-700 font-bold">10+ South India hubs</span> and nationwide markets.
+            {COMPANY_INFO.heroSubText}
           </motion.p>
 
           {/* CTA Group */}
