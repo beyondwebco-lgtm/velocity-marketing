@@ -14,6 +14,7 @@ import { ProcessAndTouchpoints } from './components/ProcessAndTouchpoints';
 import { IndustriesGrid } from './components/IndustriesGrid';
 import { HowWeDeliver } from './components/HowWeDeliver';
 import { ServicesProcessPage } from './pages/ServicesProcessPage';
+import { AboutUsPage } from './pages/AboutUsPage';
 
 const HomePage = ({ handleOpenQuote }) => (
   <main>
@@ -55,6 +56,7 @@ export function App() {
       {/* Routes */}
       <Routes>
         <Route path="/" element={<HomePage handleOpenQuote={handleOpenQuote} />} />
+        <Route path="/about" element={<AboutUsPage />} />
         <Route path="/process" element={<ServicesProcessPage onOpenQuote={handleOpenQuote} />} />
       </Routes>
 

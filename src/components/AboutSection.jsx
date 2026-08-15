@@ -1,12 +1,13 @@
 import React from 'react';
 import { COMPANY_INFO } from '../data/contentData';
-import { MotionSection, MotionCard } from './MotionWrapper';
-import { Target, Lightbulb, Users, ArrowRight } from 'lucide-react';
+import { MotionSection } from './MotionWrapper';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export const AboutSection = () => {
   return (
     <MotionSection id="about" dataTheme="light" className="py-24 relative overflow-hidden bg-white border-b border-slate-200">
-      <div className="max-w-7xl mx-auto px-6 relative z-10 space-y-24">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         
         {/* About Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -18,13 +19,27 @@ export const AboutSection = () => {
               {COMPANY_INFO.aboutHeading}
             </h2>
             <div className="text-slate-700 text-sm sm:text-base font-normal leading-relaxed space-y-4 whitespace-pre-line">
-              {COMPANY_INFO.aboutContent}
+              <p>
+                Velocity Marketing is a leading integrated sales and marketing solutions company specializing in Below-the-Line (BTL) marketing, retail execution, brand activations, merchandising, field marketing, and business support services. 
+              </p>
+              <p>
+                We partner with E-commerce, Quick Commerce, FMCG, consumer electronics, telecom, retail, and lifestyle brands to help them strengthen market presence, enhance customer engagement, and drive measurable business growth.
+              </p>
             </div>
             <div className="pt-4 pb-2">
                <div className="p-6 bg-slate-50 border-l-4 border-blue-600 rounded-r-2xl">
                  <p className="text-lg font-bold text-slate-900 italic">"{COMPANY_INFO.aboutHighlight}"</p>
-                 <p className="text-sm text-slate-600 mt-2">{COMPANY_INFO.aboutExecution}</p>
                </div>
+            </div>
+            
+            <div className="pt-4">
+              <Link 
+                to="/about"
+                className="inline-flex items-center justify-center space-x-2 px-6 py-3 rounded-full bg-slate-900 hover:bg-blue-600 text-white font-bold transition-all duration-300 shadow-md group"
+              >
+                <span>Read Our Full Story</span>
+                <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </Link>
             </div>
           </div>
           
@@ -44,46 +59,6 @@ export const AboutSection = () => {
                ))}
              </div>
           </div>
-        </div>
-
-        {/* Vision & Mission */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-           <MotionCard>
-             <div className="bg-blue-600 text-white p-8 sm:p-10 rounded-3xl h-full flex flex-col shadow-lg shadow-blue-600/20">
-               <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mb-6">
-                 <Target className="w-6 h-6 text-white" />
-               </div>
-               <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
-               <p className="text-blue-50 leading-relaxed font-normal">
-                 {COMPANY_INFO.mission}
-               </p>
-             </div>
-           </MotionCard>
-           
-           <MotionCard>
-             <div className="bg-slate-900 text-white p-8 sm:p-10 rounded-3xl h-full flex flex-col shadow-lg">
-               <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6">
-                 <Lightbulb className="w-6 h-6 text-blue-400" />
-               </div>
-               <h3 className="text-2xl font-bold mb-4">Our Vision</h3>
-               <p className="text-slate-300 leading-relaxed font-normal">
-                 {COMPANY_INFO.vision}
-               </p>
-             </div>
-           </MotionCard>
-        </div>
-
-        {/* Leadership */}
-        <div className="text-center max-w-3xl mx-auto space-y-6 pt-12 border-t border-slate-200">
-           <div className="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-2">
-             <Users className="w-8 h-8 text-blue-600" />
-           </div>
-           <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">
-             {COMPANY_INFO.leadershipHeading}
-           </h2>
-           <p className="text-slate-700 text-sm sm:text-base font-normal leading-relaxed">
-             {COMPANY_INFO.leadershipDescription}
-           </p>
         </div>
 
       </div>
