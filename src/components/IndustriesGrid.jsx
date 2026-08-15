@@ -21,8 +21,8 @@ export const IndustriesGrid = () => {
         <MotionGrid className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4" staggerDelay={0.05}>
           {INDUSTRIES.map((industry, idx) => (
             <MotionCard key={idx}>
-              <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 text-center h-full flex flex-col justify-center items-center group hover:bg-blue-600 hover:border-blue-600 transition-all duration-300 shadow-sm cursor-pointer">
-                <span className="font-bold text-slate-900 text-sm group-hover:text-white transition-colors leading-snug">
+              <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 text-center h-full flex flex-col justify-center items-center transition-all duration-300 shadow-sm">
+                <span className="font-bold text-slate-900 text-sm leading-snug">
                   {industry}
                 </span>
               </div>
