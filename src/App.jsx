@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { Preloader } from './components/Preloader';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
@@ -12,6 +13,21 @@ import { AboutSection } from './components/AboutSection';
 import { ProcessAndTouchpoints } from './components/ProcessAndTouchpoints';
 import { IndustriesGrid } from './components/IndustriesGrid';
 import { HowWeDeliver } from './components/HowWeDeliver';
+import { ServicesProcessPage } from './pages/ServicesProcessPage';
+
+const HomePage = ({ handleOpenQuote }) => (
+  <main>
+    <Hero onOpenQuote={handleOpenQuote} />
+    <ClientEcosystem onOpenQuote={handleOpenQuote} />
+    <AboutSection />
+    <ProcessAndTouchpoints />
+    <Services onOpenQuote={handleOpenQuote} />
+    <IndustriesGrid />
+    <HowWeDeliver />
+    <CoverageNetwork onOpenQuote={handleOpenQuote} />
+    <WhyUsAndContact onOpenQuote={handleOpenQuote} />
+  </main>
+);
 
 export function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -36,18 +52,11 @@ export function App() {
       {/* Global Navigation Header */}
       <Header onOpenQuote={handleOpenQuote} />
 
-      {/* Main Content Sections */}
-      <main>
-        <Hero onOpenQuote={handleOpenQuote} />
-        <ClientEcosystem onOpenQuote={handleOpenQuote} />
-        <AboutSection />
-        <ProcessAndTouchpoints />
-        <Services onOpenQuote={handleOpenQuote} />
-        <IndustriesGrid />
-        <HowWeDeliver />
-        <CoverageNetwork onOpenQuote={handleOpenQuote} />
-        <WhyUsAndContact onOpenQuote={handleOpenQuote} />
-      </main>
+      {/* Routes */}
+      <Routes>
+        <Route path="/" element={<HomePage handleOpenQuote={handleOpenQuote} />} />
+        <Route path="/process" element={<ServicesProcessPage onOpenQuote={handleOpenQuote} />} />
+      </Routes>
 
       {/* Footer */}
       <Footer onOpenQuote={handleOpenQuote} />

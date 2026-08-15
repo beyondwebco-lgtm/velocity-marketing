@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Sparkles, ArrowUpRight, Menu, X, PhoneCall, ShieldCheck, MapPin } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 import { COMPANY_INFO } from '../data/contentData';
 
 export const Header = ({ onOpenQuote }) => {
@@ -14,13 +15,27 @@ export const Header = ({ onOpenQuote }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      setTimeout(() => {
+        const element = document.querySelector(location.hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    }
+  }, [location]);
+
   const navLinks = [
-    { name: 'HOME', href: '#' },
-    { name: 'ABOUT US', href: '#about' },
-    { name: 'OUR PROCESS', href: '#process' },
-    { name: 'OUR SERVICES', href: '#services' },
-    { name: 'HOW WE DELIVER', href: '#how-we-deliver' },
-    { name: 'CONTACT US', href: '#contact' },
+    { name: 'HOME', href: '/' },
+    { name: 'ABOUT US', href: '/#about' },
+    { name: 'OUR PROCESS & SERVICES', href: '/process' },
+    { name: 'HOW WE DELIVER', href: '/#how-we-deliver' },
+    { name: 'CONTACT US', href: '/#contact' },
   ];
 
   return (
@@ -73,13 +88,13 @@ export const Header = ({ onOpenQuote }) => {
         {/* Desktop Nav Links */}
         <nav className="hidden md:flex items-center space-x-8">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.name}
-              href={link.href}
+              to={link.href}
               className="text-sm text-slate-700 hover:text-blue-600 font-semibold tracking-wide transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-blue-600 hover:after:w-full after:transition-all after:duration-300"
             >
               {link.name}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -110,14 +125,14 @@ export const Header = ({ onOpenQuote }) => {
       {mobileMenuOpen && (
         <div className="md:hidden bg-white border-b border-slate-200 px-6 py-6 space-y-4 shadow-2xl animate-in slide-in-from-top duration-300">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.name}
-              href={link.href}
+              to={link.href}
               onClick={() => setMobileMenuOpen(false)}
               className="block text-base font-bold text-slate-800 hover:text-blue-600 py-2.5 border-b border-slate-100"
             >
               {link.name}
-            </a>
+            </Link>
           ))}
           <button
             onClick={() => {

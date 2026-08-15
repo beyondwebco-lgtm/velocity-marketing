@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { COMPANY_INFO, SERVICES, SOUTH_INDIA_NETWORK } from '../data/contentData';
 import { MapPin, Phone, Mail, ArrowUpRight, ShieldCheck } from 'lucide-react';
 
@@ -31,12 +32,11 @@ export const Footer = ({ onOpenQuote }) => {
               Quick Links
             </div>
             <ul className="space-y-2.5 text-xs text-slate-300 font-medium">
-              <li><a href="#" className="hover:text-blue-400 transition-colors">Home</a></li>
-              <li><a href="#about" className="hover:text-blue-400 transition-colors">About Us</a></li>
-              <li><a href="#process" className="hover:text-blue-400 transition-colors">Our Process</a></li>
-              <li><a href="#services" className="hover:text-blue-400 transition-colors">Our Services</a></li>
-              <li><a href="#how-we-deliver" className="hover:text-blue-400 transition-colors">How We Deliver</a></li>
-              <li><a href="#contact" className="hover:text-blue-400 transition-colors">Contact Us</a></li>
+              <li><Link to="/" className="hover:text-blue-400 transition-colors">Home</Link></li>
+              <li><Link to="/#about" className="hover:text-blue-400 transition-colors">About Us</Link></li>
+              <li><Link to="/process" className="hover:text-blue-400 transition-colors">Our Process & Services</Link></li>
+              <li><Link to="/#how-we-deliver" className="hover:text-blue-400 transition-colors">How We Deliver</Link></li>
+              <li><Link to="/#contact" className="hover:text-blue-400 transition-colors">Contact Us</Link></li>
             </ul>
           </div>
 
@@ -48,9 +48,9 @@ export const Footer = ({ onOpenQuote }) => {
             <ul className="space-y-2.5 text-xs text-slate-300 font-medium">
               {SERVICES.map((s) => (
                 <li key={s.id}>
-                  <a href="#services" className="hover:text-blue-400 transition-colors">
+                  <Link to="/process" className="hover:text-blue-400 transition-colors">
                     {s.title}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
