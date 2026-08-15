@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { COMPANY_INFO, WHY_CHOOSE_US, COVERAGE_SECTION } from '../data/contentData';
 import { Target, Lightbulb, Users, CheckCircle2, MapPin } from 'lucide-react';
-import { MotionSection, MotionCard } from '../components/MotionWrapper';
+import { MotionSection, MotionCard, MotionGrid } from '../components/MotionWrapper';
 
 export const AboutUsPage = () => {
   return (
@@ -60,17 +60,19 @@ export const AboutUsPage = () => {
               At Velocity Marketing, we believe successful marketing goes beyond ideas—it requires flawless execution. With a strong PAN India network and real-time reporting systems, we ensure every campaign is delivered with precision and accountability.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <MotionGrid className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {WHY_CHOOSE_US.map((reason, index) => (
-              <div key={index} className="flex items-start space-x-4 p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:border-blue-200 transition-colors">
-                <CheckCircle2 className="w-6 h-6 text-emerald-500 flex-shrink-0" />
-                <div>
-                  <h4 className="font-bold text-slate-900 text-lg mb-1">{reason.title}</h4>
-                  <p className="text-slate-600 leading-relaxed">{reason.desc}</p>
+              <MotionCard key={index}>
+                <div className="flex items-start space-x-4 p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:border-blue-300 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+                  <CheckCircle2 className="w-6 h-6 text-emerald-500 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                  <div>
+                    <h4 className="font-bold text-slate-900 text-lg mb-1 group-hover:text-blue-700 transition-colors">{reason.title}</h4>
+                    <p className="text-slate-600 leading-relaxed">{reason.desc}</p>
+                  </div>
                 </div>
-              </div>
+              </MotionCard>
             ))}
-          </div>
+          </MotionGrid>
         </div>
       </MotionSection>
 
