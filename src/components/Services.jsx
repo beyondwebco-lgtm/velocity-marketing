@@ -43,41 +43,37 @@ export const Services = ({ onOpenQuote }) => {
           </p>
         </div>
 
-        {/* Vertical Tabs Bar */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          
-          {/* Left Column: Navigation Tabs */}
-          <div className="lg:col-span-4 space-y-3">
-            {SERVICES.map((service) => {
-              const Icon = iconMap[service.icon] || Sparkles;
-              const isActive = service.id === activeTab;
-              return (
-                <button
-                  key={service.id}
-                  onClick={() => setActiveTab(service.id)}
-                  className={`w-full text-left p-5 rounded-2xl transition-all duration-300 flex items-start space-x-4 border ${
-                    isActive
-                      ? 'bg-blue-600 border-blue-600 text-white shadow-xl shadow-blue-600/25 translate-x-2'
-                      : 'bg-slate-50 border-slate-200 text-slate-700 hover:text-slate-900 hover:bg-slate-100'
-                  }`}
-                >
-                  <div className={`p-3 rounded-xl ${isActive ? 'bg-white/20 text-white' : 'bg-white text-blue-600 shadow-sm border border-slate-200'}`}>
-                    <Icon className="w-6 h-6" />
+        {/* Horizontal Tabs Bar */}
+        <div className="flex overflow-x-auto space-x-3 pb-4 mb-8 scrollbar-hide snap-x">
+          {SERVICES.map((service) => {
+            const Icon = iconMap[service.icon] || Sparkles;
+            const isActive = service.id === activeTab;
+            return (
+              <button
+                key={service.id}
+                onClick={() => setActiveTab(service.id)}
+                className={`flex-shrink-0 min-w-[240px] text-left p-4 rounded-2xl transition-all duration-300 flex items-start space-x-4 border snap-start ${
+                  isActive
+                    ? 'bg-blue-600 border-blue-600 text-white shadow-lg shadow-blue-600/25 -translate-y-1'
+                    : 'bg-slate-50 border-slate-200 text-slate-700 hover:text-slate-900 hover:bg-slate-100 hover:-translate-y-1'
+                }`}
+              >
+                <div className={`p-2.5 rounded-xl ${isActive ? 'bg-white/20 text-white' : 'bg-white text-blue-600 shadow-sm border border-slate-200'}`}>
+                  <Icon className="w-5 h-5" />
+                </div>
+                <div className="flex-1">
+                  <div className={`text-[10px] font-mono uppercase tracking-wider mb-1 font-bold ${isActive ? 'text-blue-100' : 'text-blue-700'}`}>
+                    {service.id}
                   </div>
-                  <div>
-                    <div className={`text-xs font-mono uppercase tracking-wider mb-1 font-bold ${isActive ? 'text-blue-100' : 'text-blue-700'}`}>
-                      {service.id}
-                    </div>
-                    <h3 className={`font-bold text-base ${isActive ? 'text-white' : 'text-slate-900'}`}>{service.title}</h3>
-                    <p className={`text-xs mt-1 line-clamp-2 ${isActive ? 'text-blue-100 font-normal' : 'text-slate-600 font-normal'}`}>{service.shortDesc}</p>
-                  </div>
-                </button>
-              );
-            })}
-          </div>
+                  <h3 className={`font-bold text-sm ${isActive ? 'text-white' : 'text-slate-900'}`}>{service.title}</h3>
+                </div>
+              </button>
+            );
+          })}
+        </div>
 
-          {/* Right Column: Dynamic Deep-Dive Grid with AnimatePresence */}
-          <div className="lg:col-span-8">
+          {/* Dynamic Deep-Dive Grid with AnimatePresence */}
+          <div className="w-full">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeServiceGroup.id}
@@ -145,11 +141,7 @@ export const Services = ({ onOpenQuote }) => {
               </motion.div>
             </AnimatePresence>
           </div>
-
-        </div>
-
       </div>
-
 
     </MotionSection>
   );
