@@ -15,12 +15,12 @@ export const Header = ({ onOpenQuote }) => {
   }, []);
 
   const navLinks = [
-    { name: 'Services', href: '#services' },
-    { name: 'Tech Platform', href: '#tech-platform' },
-    { name: 'Coverage & Network', href: '#coverage' },
-    { name: 'Client Ecosystem', href: '#clients' },
-    { name: 'Estimator', href: '#estimator' },
-    { name: 'Why Velocity', href: '#why-us' },
+    { name: 'HOME', href: '#' },
+    { name: 'ABOUT US', href: '#about' },
+    { name: 'OUR PROCESS', href: '#process' },
+    { name: 'OUR SERVICES', href: '#services' },
+    { name: 'HOW WE DELIVER', href: '#how-we-deliver' },
+    { name: 'CONTACT US', href: '#contact' },
   ];
 
   return (
@@ -90,7 +90,7 @@ export const Header = ({ onOpenQuote }) => {
             className="group relative inline-flex items-center justify-center px-6 py-2.5 rounded-full font-bold text-sm text-white bg-blue-600 hover:bg-blue-700 shadow-md shadow-blue-600/25 hover:shadow-lg hover:shadow-blue-600/40 transition-all duration-300 hover:scale-105"
           >
             <span className="relative z-10 flex items-center space-x-2">
-              <span>Launch Campaign</span>
+              <span>Get a Quote</span>
               <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </span>
           </button>
@@ -126,7 +126,7 @@ export const Header = ({ onOpenQuote }) => {
             }}
             className="w-full mt-4 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl flex items-center justify-center space-x-2 shadow-md"
           >
-            <span>Launch Campaign</span>
+            <span>Get a Quote</span>
             <ArrowUpRight className="w-5 h-5" />
           </button>
         </div>

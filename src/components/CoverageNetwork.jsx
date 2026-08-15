@@ -3,6 +3,17 @@ import { SOUTH_INDIA_NETWORK, COVERAGE_SECTION } from '../data/contentData';
 import { MapPin, ArrowUpRight, CheckCircle2, Shield } from 'lucide-react';
 import { MotionSection } from './MotionWrapper';
 import { motion, AnimatePresence } from 'framer-motion';
+import { MapContainer, TileLayer, Marker, Popup, Circle } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+
+// Fix Leaflet's default icon path issues
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
+  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+});
 
 export const CoverageNetwork = ({ onOpenQuote }) => {
   const [selectedCity, setSelectedCity] = useState(SOUTH_INDIA_NETWORK[0]);
@@ -30,102 +41,71 @@ export const CoverageNetwork = ({ onOpenQuote }) => {
         {/* Network Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          {/* Left Column: Interactive City Hub Buttons */}
-          <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3 max-h-[600px] overflow-y-auto pr-2 custom-scrollbar">
-            {SOUTH_INDIA_NETWORK.map((item, idx) => {
-              const isSelected = selectedCity.city === item.city;
-              return (
-                <button
-                  key={idx}
-                  onClick={() => setSelectedCity(item)}
-                  className={`w-full text-left p-4 rounded-2xl transition-all duration-300 flex items-center justify-between border ${
-                    isSelected
-                      ? 'bg-blue-600 border-blue-600 text-white shadow-xl shadow-blue-600/25 translate-x-2'
-                      : 'bg-slate-50 border-slate-200 text-slate-800 hover:bg-slate-100'
-                  }`}
-                >
-                  <div className="flex items-center space-x-4">
-                    <div className={`p-2.5 rounded-xl ${isSelected ? 'bg-white/20 text-white' : 'bg-white text-blue-600 border border-slate-200 shadow-sm'}`}>
-                      <MapPin className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <h3 className={`font-bold text-base ${isSelected ? 'text-white' : 'text-slate-900'}`}>{item.city}</h3>
-                      <p className={`text-xs font-mono font-medium ${isSelected ? 'text-blue-100' : 'text-slate-600'}`}>{item.state}</p>
-                    </div>
-                  </div>
-                </button>
-              );
-            })}
-          </div>
+          {/* Map Column */}
+          <div className="lg:col-span-12 h-[500px] rounded-3xl overflow-hidden border border-slate-200 shadow-xl z-0 relative">
+            <MapContainer 
+              center={[12.9716, 77.5946]} // Centered around Bangalore
+              zoom={6} 
+              scrollWheelZoom={false} 
+              className="w-full h-full z-0"
+              style={{ zIndex: 0 }}
+            >
+              <TileLayer
+                url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+              />
+              
+              {/* Markers for core cities */}
+              {SOUTH_INDIA_NETWORK.map((city, idx) => {
+                // Approximate coordinates for the main cities
+                const coords = {
+                  "Bangalore": [12.9716, 77.5946],
+                  "Chennai": [13.0827, 80.2707],
+                  "Hyderabad": [17.3850, 78.4867],
+                  "Kochi": [9.9312, 76.2673],
+                  "Trivandrum": [8.5241, 76.9366],
+                  "Vijayawada": [16.5062, 80.6480]
+                };
+                
+                const position = coords[city.city] || [12.9716, 77.5946];
+                
+                return (
+                  <Marker position={position} key={idx}>
+                    <Popup className="font-sans">
+                      {city.city === "Kerala" ? (
+                        <div className="font-bold text-slate-900">Kerala — State-wide Coverage</div>
+                      ) : (
+                        <>
+                          <div className="font-bold text-slate-900">{city.city}</div>
+                          <div className="text-xs text-slate-500">{city.state}</div>
+                        </>
+                      )}
+                      <div className="text-[10px] text-blue-600 font-bold mt-1 uppercase tracking-wider">Operational Coverage</div>
+                    </Popup>
+                  </Marker>
+                );
+              })}
 
-          {/* Right Column: Dynamic Interactive Hub Status Card with Motion */}
-          <div className="lg:col-span-7 sticky top-24">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={selectedCity.city}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                className="bg-slate-50 rounded-3xl p-8 border border-slate-200 space-y-8 relative overflow-hidden shadow-xl shadow-slate-900/5"
-              >
-                {/* Card Header */}
-                <div className="flex items-center justify-between border-b border-slate-200 pb-6">
-                  <div>
-                    <div className="text-xs font-mono text-blue-700 font-extrabold uppercase tracking-widest">
-                      SELECTED REGION
-                    </div>
-                    <h3 className="text-3xl font-extrabold text-slate-900 mt-1">
-                      {selectedCity.city}
-                    </h3>
-                    <p className="text-slate-600 text-xs font-mono font-medium mt-1">
-                      {selectedCity.state}
-                    </p>
-                  </div>
-                  <div className="px-3.5 py-1.5 rounded-full bg-emerald-100 text-emerald-800 font-mono text-xs font-bold border border-emerald-300 flex items-center space-x-2">
-                    <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
-                    <span>ACTIVE</span>
-                  </div>
-                </div>
-
-
-                {/* State-wide Coverage Pills */}
-                <div className="space-y-3">
-                  <div className="text-xs font-mono text-slate-800 font-bold">
-                    CITIES & REGIONS WE COVER:
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {SOUTH_INDIA_NETWORK.map((c, i) => (
-                      <span
-                        key={i}
-                        className={`px-3 py-1 rounded-lg text-xs font-mono border ${
-                          selectedCity.city === c.city
-                            ? 'bg-blue-600 border-blue-600 text-white font-bold'
-                            : 'bg-white border-slate-200 text-slate-800 font-medium'
-                        }`}
-                      >
-                        {c.city}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Action Ribbon */}
-                <div className="pt-4 flex items-center justify-between border-t border-slate-200">
-                  <div className="flex items-center space-x-2 text-xs text-slate-700 font-mono font-medium">
-                    <Shield className="w-4 h-4 text-blue-600" />
-                    <span>Seamless execution with standardized processes</span>
-                  </div>
-                  <button
-                    onClick={onOpenQuote}
-                    className="px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs uppercase tracking-wider flex items-center space-x-2 shadow-lg shadow-blue-600/20"
-                  >
-                    <span>Launch Campaign</span>
-                    <ArrowUpRight className="w-4 h-4" />
-                  </button>
-                </div>
-              </motion.div>
-            </AnimatePresence>
+              {/* Coverage Highlight Circles */}
+              <Circle center={[15.3173, 75.7139]} radius={250000} pathOptions={{ color: '#2563EB', fillColor: '#3B82F6', fillOpacity: 0.1 }} /> {/* Karnataka */}
+              <Circle center={[11.1271, 78.6569]} radius={200000} pathOptions={{ color: '#2563EB', fillColor: '#3B82F6', fillOpacity: 0.1 }} /> {/* TN */}
+              <Circle center={[17.1232, 79.2088]} radius={180000} pathOptions={{ color: '#2563EB', fillColor: '#3B82F6', fillOpacity: 0.1 }} /> {/* Telangana */}
+              <Circle center={[15.9129, 79.7400]} radius={200000} pathOptions={{ color: '#2563EB', fillColor: '#3B82F6', fillOpacity: 0.1 }} /> {/* AP */}
+              <Circle center={[10.8505, 76.2711]} radius={120000} pathOptions={{ color: '#2563EB', fillColor: '#3B82F6', fillOpacity: 0.1 }} /> {/* Kerala */}
+            </MapContainer>
+            
+            {/* Overlay Panel */}
+            <div className="absolute top-6 right-6 z-[1000] bg-white/90 backdrop-blur-md p-6 rounded-2xl shadow-lg border border-slate-100 max-w-sm pointer-events-auto">
+              <h3 className="font-extrabold text-lg text-slate-900 mb-2">South India Core</h3>
+              <p className="text-sm text-slate-600 mb-4">Strong execution capabilities across Karnataka, AP, Telangana, Tamil Nadu, and Kerala.</p>
+              <div className="flex flex-wrap gap-2">
+                {SOUTH_INDIA_NETWORK.map((c, i) => (
+                  <span key={i} className="px-2.5 py-1 bg-blue-100 text-blue-800 rounded text-[10px] font-bold tracking-wider uppercase">
+                    {c.city}
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
 
         </div>

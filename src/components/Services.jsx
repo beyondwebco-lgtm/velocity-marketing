@@ -96,8 +96,8 @@ export const Services = ({ onOpenQuote }) => {
                     <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">
                       {activeServiceGroup.title}
                     </h3>
-                    <p className="text-slate-700 text-sm mt-2 font-normal">
-                      {activeServiceGroup.shortDesc}
+                    <p className="text-slate-700 text-sm mt-2 font-normal leading-relaxed">
+                      {activeServiceGroup.detailedDesc}
                     </p>
                   </div>
                   <button

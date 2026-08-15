@@ -3,16 +3,15 @@ import { Preloader } from './components/Preloader';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { Services } from './components/Services';
-import { TechPlatform } from './components/TechPlatform';
 import { CoverageNetwork } from './components/CoverageNetwork';
 import { ClientEcosystem } from './components/ClientEcosystem';
-import { CampaignEstimator } from './components/CampaignEstimator';
 import { WhyUsAndContact } from './components/WhyUsAndContact';
 import { ProposalModal } from './components/ProposalModal';
 import { Footer } from './components/Footer';
 import { AboutSection } from './components/AboutSection';
 import { ProcessAndTouchpoints } from './components/ProcessAndTouchpoints';
 import { IndustriesGrid } from './components/IndustriesGrid';
+import { HowWeDeliver } from './components/HowWeDeliver';
 
 export function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -42,12 +41,11 @@ export function App() {
         <Hero onOpenQuote={handleOpenQuote} />
         <ClientEcosystem onOpenQuote={handleOpenQuote} />
         <AboutSection />
+        <ProcessAndTouchpoints />
         <Services onOpenQuote={handleOpenQuote} />
         <IndustriesGrid />
+        <HowWeDeliver />
         <CoverageNetwork onOpenQuote={handleOpenQuote} />
-        <ProcessAndTouchpoints />
-        <TechPlatform />
-        <CampaignEstimator onOpenQuote={handleOpenQuote} />
         <WhyUsAndContact onOpenQuote={handleOpenQuote} />
       </main>
 
