@@ -4,9 +4,9 @@ import { ProcessSection } from '../components/ProcessSection';
 import { MotionSection } from '../components/MotionWrapper';
 import { Link } from 'react-router-dom';
 
-export const ProcessPage = () => {
+export const ProcessPage = ({ isStandalone = true }) => {
   return (
-    <div className="pt-24 pb-20 min-h-screen bg-slate-50">
+    <div className={`${isStandalone ? 'pt-24 pb-20 min-h-screen bg-slate-50' : 'py-20 bg-slate-50'}`}>
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Header */}

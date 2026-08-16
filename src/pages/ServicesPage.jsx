@@ -4,9 +4,9 @@ import { DETAILED_SERVICES } from '../data/detailedData';
 import { MotionSection, MotionCard } from '../components/MotionWrapper';
 import { Link } from 'react-router-dom';
 
-export const ServicesPage = () => {
+export const ServicesPage = ({ isStandalone = true }) => {
   return (
-    <div className="pt-24 pb-20 min-h-screen bg-slate-50">
+    <div className={`${isStandalone ? 'pt-24 pb-20 bg-slate-50 min-h-screen' : 'py-20 bg-slate-50'}`}>
       <div className="max-w-5xl mx-auto px-6">
         
         {/* Header */}

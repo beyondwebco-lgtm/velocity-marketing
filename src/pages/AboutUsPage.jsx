@@ -4,9 +4,9 @@ import { COMPANY_INFO, WHY_CHOOSE_US, COVERAGE_SECTION } from '../data/contentDa
 import { Target, Lightbulb, Users, CheckCircle2, MapPin } from 'lucide-react';
 import { MotionSection, MotionCard, MotionGrid } from '../components/MotionWrapper';
 
-export const AboutUsPage = () => {
+export const AboutUsPage = ({ isStandalone = true }) => {
   return (
-    <div className="pt-24 pb-16 bg-[#F8FAFC]">
+    <div className={`${isStandalone ? 'pt-24 pb-16 bg-[#F8FAFC]' : 'py-16'}`}>
       {/* Header Section */}
       <MotionSection className="max-w-7xl mx-auto px-6 mb-16 mt-8">
         <div className="text-center max-w-3xl mx-auto space-y-6">
