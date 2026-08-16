@@ -30,6 +30,7 @@ export const COMPANY_INFO = {
   phone: "+91 98491 41943",
   email: "hello@velocitymarketing.in",
   address: "Operational HQ: Bengaluru | Strategic Operations: Hyderabad, Chennai, Visakhapatnam & Kochi",
+  mapLink: "https://maps.app.goo.gl/93JeKg64Z6M2t9aa9",
   
   leadershipHeading: "Leadership Driven by Execution",
   leadershipDescription: "Velocity Marketing is led by experienced professionals with expertise across sales, marketing, retail operations, business development, and brand execution. The leadership team combines strategic thinking with operational excellence to deliver solutions tailored to diverse industry requirements.",
