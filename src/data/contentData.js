@@ -27,7 +27,7 @@ export const COMPANY_INFO = {
   vision: "To become India's most trusted and innovative marketing execution partner, delivering impactful retail and consumer engagement solutions that empower brands to achieve sustainable growth and market leadership.",
   mission: "Our mission is to provide end-to-end marketing and sales execution services that help brands reach the right customers at the right time.\n\nThrough operational excellence, technology-driven reporting, skilled manpower, and nationwide coverage, we aim to create measurable value for every client while maintaining the highest standards of quality, transparency, and professionalism.",
 
-  phone: "+91 98765 43210",
+  phone: "+91 98491 41943",
   email: "hello@velocitymarketing.in",
   address: "Operational HQ: Bengaluru | Strategic Operations: Hyderabad, Chennai, Visakhapatnam & Kochi",
   
@@ -52,6 +52,9 @@ export const CLIENT_PARTNERS = [
   { name: "Zepto", category: "Instant Delivery" },
   { name: "Blinkit", category: "Quick Commerce" },
   { name: "Ratnadeep Retail", category: "Supermarket Chain" },
+  { name: "Narayana Schools", category: "Education" },
+  { name: "DMart", category: "Retail Chains" },
+  { name: "Sun Pharma", category: "Healthcare & Pharmaceuticals" },
 ];
 
 export const CLIENT_SECTION = {

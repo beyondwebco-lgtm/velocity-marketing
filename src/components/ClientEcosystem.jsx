@@ -8,7 +8,10 @@ export const ClientEcosystem = () => {
     "Flipkart Minutes": "/assets/clients/flipkart-minutes-logo.svg",
     "Zepto": "/assets/clients/zepto-logo.svg",
     "Blinkit": "/assets/clients/blinkit-logo.svg",
-    "Ratnadeep Retail": "/assets/clients/ratnadeep-retail-logo.svg"
+    "Ratnadeep Retail": "/assets/clients/ratnadeep-retail-logo.svg",
+    "Narayana Schools": "/assets/clients/narayana-schools.png",
+    "DMart": "/assets/clients/dmart.png",
+    "Sun Pharma": "/assets/clients/sun-pharma.png"
   };
 
   return (

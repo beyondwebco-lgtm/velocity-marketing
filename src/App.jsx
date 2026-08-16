@@ -15,6 +15,7 @@ import { IndustriesGrid } from './components/IndustriesGrid';
 import { HowWeDeliver } from './components/HowWeDeliver';
 import { ServicesProcessPage } from './pages/ServicesProcessPage';
 import { AboutUsPage } from './pages/AboutUsPage';
+import { WhatsAppButton } from './components/WhatsAppButton';
 
 const HomePage = ({ handleOpenQuote }) => (
   <main>
@@ -62,6 +63,9 @@ export function App() {
 
       {/* Footer */}
       <Footer onOpenQuote={handleOpenQuote} />
+
+      {/* WhatsApp Floating Button */}
+      <WhatsAppButton />
 
       {/* Interactive Campaign Proposal Modal */}
       <ProposalModal isOpen={isQuoteModalOpen} onClose={handleCloseQuote} />
