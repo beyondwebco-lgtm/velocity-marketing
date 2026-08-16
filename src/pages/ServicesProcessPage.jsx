@@ -17,9 +17,9 @@ const imageMap = {
 
 export const ServicesProcessPage = ({ onOpenQuote }) => {
   return (
-    <div className="pt-24 pb-16 bg-[#F8FAFC]">
+    <div id="process" className="py-12 md:py-20 bg-[#F8FAFC]">
       {/* Header Section */}
-      <MotionSection className="max-w-7xl mx-auto px-6 mb-16 mt-8">
+      <MotionSection className="max-w-7xl mx-auto px-6 mb-16">
         <div className="text-center max-w-3xl mx-auto space-y-6">
           <div className="inline-flex items-center space-x-2 text-xs font-mono uppercase tracking-widest text-blue-700 font-bold bg-blue-100 px-4 py-2 rounded-full">
             <span>Our Process & Services</span>
