@@ -88,6 +88,7 @@ export const SERVICES = [
     title: "Brand Activation",
     shortDesc: "Transform brands into memorable experiences that increase product awareness, drive consumer engagement, and boost sales.",
     icon: "Sparkles",
+    image: "/assets/services/Brand Activations.png",
     items: [
       "Product Sampling",
       "Product Demonstrations",
@@ -107,6 +108,7 @@ export const SERVICES = [
     title: "Retail Marketing",
     shortDesc: "Strengthen retail presence by delivering consistent in-store execution, enhancing product visibility, and creating engaging shopping experiences.",
     icon: "ShoppingBag",
+    image: "/assets/services/Retail marketing.png",
     items: [
       "Merchandising",
       "Shelf Audits",
@@ -124,6 +126,7 @@ export const SERVICES = [
     title: "Outdoor Activations",
     shortDesc: "Maximize brand visibility and engage consumers through interactive experiences in high-footfall public locations.",
     icon: "MapPin",
+    image: "/assets/services/outdoor activation.png",
     items: [
       "Roadshows",
       "Van Campaigns",
@@ -140,6 +143,7 @@ export const SERVICES = [
     title: "Events & Promotions",
     shortDesc: "Strengthen relationships with dealers, distributors, retailers, and corporate partners through professionally managed events.",
     icon: "Calendar",
+    image: "/assets/services/Events & Promotions.png",
     items: [
       "Dealer Meets",
       "Distributor Meets",
@@ -155,6 +159,7 @@ export const SERVICES = [
     title: "Digital Support",
     shortDesc: "Connect physical marketing activities with digital engagement through QR campaigns, lead generation, and customer feedback.",
     icon: "Smartphone",
+    image: "/assets/services/Digital Support.png",
     items: [
       "QR Code Campaigns",
       "Lead Generation Campaigns",
@@ -169,6 +174,7 @@ export const SERVICES = [
     title: "Branding & Fabrication",
     shortDesc: "Create a strong and consistent physical brand presence with professionally designed kiosks, stalls, and display units.",
     icon: "PenTool",
+    image: "/assets/services/Branding & Fabrication.png",
     items: [
       "Kiosks",
       "Exhibition Stalls",
@@ -183,6 +189,7 @@ export const SERVICES = [
     title: "Audit & Analytics",
     shortDesc: "Gain valuable market insights through retail audits, GPS tracking, live photo reporting, and ROI measurement.",
     icon: "BarChart3",
+    image: "/assets/services/Audit & Analytics.png",
     items: [
       "Retail Audits",
       "Mystery Shopping",
@@ -200,6 +207,7 @@ export const SERVICES = [
     title: "Logistics & Operations",
     shortDesc: "Ensure smooth nationwide campaign execution with expert planning, warehousing, and inventory management.",
     icon: "Truck",
+    image: "/assets/services/Logistics & Operations.png",
     items: [
       "Campaign Planning",
       "PAN India Execution",

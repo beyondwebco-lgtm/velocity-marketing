@@ -105,25 +105,41 @@ export const Services = ({ onOpenQuote }) => {
                   </button>
                 </div>
 
-                {/* Service Sub-Items Cards Grid */}
-                <MotionGrid className="grid grid-cols-1 sm:grid-cols-2 gap-4" staggerDelay={0.08}>
-                  {activeServiceGroup.items.map((item, idx) => (
-                    <MotionCard key={idx}>
-                      <div
-                        className="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm h-full flex flex-col justify-center"
-                      >
-                        <div className="flex items-center space-x-3">
-                          <div className="w-6 h-6 rounded bg-blue-100 text-blue-800 flex items-center justify-center font-mono text-xs font-bold flex-shrink-0">
-                            <Check className="w-3 h-3" />
+                {/* Layout with Image and Grid */}
+                <div className="flex flex-col lg:flex-row gap-8 items-stretch">
+                  {/* Service Image */}
+                  {activeServiceGroup.image && (
+                    <div className="lg:w-2/5 flex-shrink-0 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                      <img 
+                        src={activeServiceGroup.image} 
+                        alt={activeServiceGroup.title} 
+                        className="w-full h-full object-cover" 
+                      />
+                    </div>
+                  )}
+                  
+                  {/* Service Sub-Items Cards Grid */}
+                  <div className="flex-1">
+                    <MotionGrid className="grid grid-cols-1 sm:grid-cols-2 gap-4" staggerDelay={0.08}>
+                      {activeServiceGroup.items.map((item, idx) => (
+                        <MotionCard key={idx}>
+                          <div
+                            className="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm h-full flex flex-col justify-center"
+                          >
+                            <div className="flex items-center space-x-3">
+                              <div className="w-6 h-6 rounded bg-blue-100 text-blue-800 flex items-center justify-center font-mono text-xs font-bold flex-shrink-0">
+                                <Check className="w-3 h-3" />
+                              </div>
+                              <h4 className="font-bold text-slate-900 text-sm">
+                                {item}
+                              </h4>
+                            </div>
                           </div>
-                          <h4 className="font-bold text-slate-900 text-sm">
-                            {item}
-                          </h4>
-                        </div>
-                      </div>
-                    </MotionCard>
-                  ))}
-                </MotionGrid>
+                        </MotionCard>
+                      ))}
+                    </MotionGrid>
+                  </div>
+                </div>
 
                 {/* Footer Banner */}
                 <div className="p-4 rounded-2xl bg-blue-50 border border-blue-200 flex items-center justify-between">
