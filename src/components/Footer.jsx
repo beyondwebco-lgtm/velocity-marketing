@@ -34,8 +34,8 @@ export const Footer = ({ onOpenQuote }) => {
             <ul className="space-y-2.5 text-xs text-slate-300 font-medium">
               <li><Link to="/" className="hover:text-blue-400 transition-colors">Home</Link></li>
               <li><Link to="/about" className="hover:text-blue-400 transition-colors">About Us</Link></li>
-              <li><Link to="/#process" className="hover:text-blue-400 transition-colors">Our Process & Services</Link></li>
-              <li><Link to="/#how-we-deliver" className="hover:text-blue-400 transition-colors">How We Deliver</Link></li>
+              <li><Link to="/services" className="hover:text-blue-400 transition-colors">Our Services</Link></li>
+              <li><Link to="/process" className="hover:text-blue-400 transition-colors">Our Process</Link></li>
               <li><Link to="/#contact" className="hover:text-blue-400 transition-colors">Contact Us</Link></li>
             </ul>
           </div>

@@ -10,22 +10,26 @@ import { WhyUsAndContact } from './components/WhyUsAndContact';
 import { ProposalModal } from './components/ProposalModal';
 import { Footer } from './components/Footer';
 import { AboutSection } from './components/AboutSection';
-import { ProcessAndTouchpoints } from './components/ProcessAndTouchpoints';
 import { IndustriesGrid } from './components/IndustriesGrid';
 import { HowWeDeliver } from './components/HowWeDeliver';
-import { ServicesProcessPage } from './pages/ServicesProcessPage';
+import { ServicesPage } from './pages/ServicesPage';
+import { ProcessPage } from './pages/ProcessPage';
 import { AboutUsPage } from './pages/AboutUsPage';
 import { WhatsAppButton } from './components/WhatsAppButton';
+import { StatisticsSection } from './components/StatisticsSection';
+import { ProcessSection } from './components/ProcessSection';
 
 const HomePage = ({ handleOpenQuote }) => (
   <main>
     <Hero onOpenQuote={handleOpenQuote} />
     <ClientEcosystem onOpenQuote={handleOpenQuote} />
     <AboutSection />
-    <ServicesProcessPage onOpenQuote={handleOpenQuote} />
+    <Services />
+    <ProcessSection />
     <IndustriesGrid />
     <HowWeDeliver />
     <CoverageNetwork onOpenQuote={handleOpenQuote} />
+    <StatisticsSection />
     <WhyUsAndContact onOpenQuote={handleOpenQuote} />
   </main>
 );
@@ -57,7 +61,8 @@ export function App() {
       <Routes>
         <Route path="/" element={<HomePage handleOpenQuote={handleOpenQuote} />} />
         <Route path="/about" element={<AboutUsPage />} />
-        <Route path="/process" element={<ServicesProcessPage onOpenQuote={handleOpenQuote} />} />
+        <Route path="/services" element={<ServicesPage />} />
+        <Route path="/process" element={<ProcessPage />} />
       </Routes>
 
       {/* Footer */}
