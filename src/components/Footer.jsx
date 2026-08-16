@@ -13,17 +13,39 @@ export const Footer = ({ onOpenQuote }) => {
           
           {/* Brand Info */}
           <div className="lg:col-span-4 space-y-6">
-            <a href="#" className="flex items-center space-x-3">
-              <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center font-extrabold text-white text-xl tracking-tighter shadow-lg shadow-blue-500/20">
-                V
+            <a href="#" className="flex items-center space-x-3 group">
+              <div className="w-12 h-12 rounded-xl bg-white p-1 shadow-lg shadow-slate-900/50 flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform duration-300">
+                <img
+                  src="/assets/Logo.jpeg"
+                  alt="Velocity Marketing"
+                  className="w-full h-full object-contain"
+                />
               </div>
-              <span className="font-extrabold text-xl tracking-tight text-white">
-                VELOCITY <span className="font-light text-slate-400">MARKETING</span>
-              </span>
+              <div className="flex flex-col">
+                <span className="font-extrabold text-xl tracking-tight text-white group-hover:text-blue-400 transition-colors">
+                  VELOCITY <span className="font-light text-slate-400">MARKETING</span>
+                </span>
+                <span className="text-[10px] tracking-widest uppercase text-slate-500 font-mono font-bold">
+                  On-Ground Execution Studio
+                </span>
+              </div>
             </a>
             <p className="text-slate-300 text-sm leading-relaxed max-w-sm font-normal">
               {COMPANY_INFO.tagline}
             </p>
+            <div className="pt-4 border-t border-slate-800">
+              <a href={COMPANY_INFO.mapLink} target="_blank" rel="noopener noreferrer" className="flex items-start space-x-3 group">
+                <div className="mt-1 flex-shrink-0">
+                  <MapPin className="w-5 h-5 text-blue-500 group-hover:text-blue-400 transition-colors" />
+                </div>
+                <div>
+                  <div className="text-xs font-mono text-white uppercase tracking-widest font-bold mb-1">Office Location</div>
+                  <p className="text-slate-400 text-sm font-medium leading-relaxed group-hover:text-slate-300 transition-colors">
+                    {COMPANY_INFO.address}
+                  </p>
+                </div>
+              </a>
+            </div>
           </div>
 
           {/* Quick Links */}
