@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { X, CheckCircle2, ArrowRight, Shield } from 'lucide-react';
-import { SERVICES } from '../data/contentData';
+import { SERVICES, COMPANY_INFO } from '../data/contentData';
 
 export const ProposalModal = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({
@@ -19,6 +19,28 @@ export const ProposalModal = ({ isOpen, onClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    const targetPhone = COMPANY_INFO.phone.replace(/[^0-9]/g, '');
+    
+    const message = `Hello Velocity Marketing,
+
+I would like to request a campaign proposal. Here are my details:
+
+*Name:* ${formData.name}
+*Brand/Company:* ${formData.company}
+*Email:* ${formData.email}
+*Phone/WhatsApp:* ${formData.phone}
+*Primary Service:* ${formData.serviceType}
+
+*Campaign Objectives/Notes:*
+${formData.notes || 'None'}
+
+Looking forward to hearing from you.`;
+
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${targetPhone}?text=${encodedMessage}`;
+    
+    window.open(whatsappUrl, '_blank');
     setSubmitted(true);
   };
 
