@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { COMPANY_INFO, WHY_CHOOSE_US, COVERAGE_SECTION } from '../data/contentData';
+import { COMPANY_INFO, WHY_CHOOSE_US, COVERAGE_SECTION, LEADERSHIP_TEAM } from '../data/contentData';
 import { Target, Lightbulb, Users, CheckCircle2, MapPin } from 'lucide-react';
 import { MotionSection, MotionCard, MotionGrid } from '../components/MotionWrapper';
 
@@ -107,6 +107,30 @@ export const AboutUsPage = ({ isStandalone = true }) => {
               {COVERAGE_SECTION.panIndiaContent}
             </p>
           </div>
+        </div>
+      </MotionSection>
+
+      {/* Detailed Leadership Profiles */}
+      <MotionSection className="max-w-7xl mx-auto px-6 mt-16 mb-8">
+        <div className="space-y-8">
+          {LEADERSHIP_TEAM.map((leader, index) => (
+            <div key={index} className="flex flex-col md:flex-row gap-8 items-start bg-white rounded-3xl p-8 shadow-xl shadow-slate-900/5 border border-slate-200 hover:border-blue-200 transition-colors duration-300">
+              <div className="w-48 h-48 md:w-56 md:h-56 flex-shrink-0 rounded-2xl overflow-hidden shadow-lg border-4 border-slate-50 self-center md:self-start">
+                <img src={leader.image} alt={leader.name} className="w-full h-full object-cover" />
+              </div>
+              <div className="flex-1 space-y-4">
+                <div>
+                  <h3 className="text-2xl md:text-3xl font-extrabold text-slate-900">{leader.name}</h3>
+                  <p className="text-blue-600 font-bold tracking-widest uppercase text-sm mt-1">{leader.role}</p>
+                </div>
+                <div className="space-y-4 pt-2">
+                  {leader.bio.map((paragraph, pIdx) => (
+                    <p key={pIdx} className="text-slate-600 leading-relaxed font-medium text-justify">{paragraph}</p>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </MotionSection>
     </div>

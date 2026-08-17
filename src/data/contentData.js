@@ -29,12 +29,37 @@ export const COMPANY_INFO = {
 
   phone: "+91 98491 41943",
   email: "hello@velocitymarketing.in",
-  address: "Operational HQ: Bengaluru | Strategic Operations: Hyderabad, Chennai, Visakhapatnam & Kochi",
+  address: "Velocity Marketing, 12th floor, Cross Street 1, Kondapur, Whitefields, Gachibowli, Hyderabad, Telangana 500084",
   mapLink: "https://maps.app.goo.gl/93JeKg64Z6M2t9aa9",
   
   leadershipHeading: "Leadership Driven by Execution",
-  leadershipDescription: "Velocity Marketing is led by experienced professionals with expertise across sales, marketing, retail operations, business development, and brand execution. The leadership team combines strategic thinking with operational excellence to deliver solutions tailored to diverse industry requirements.",
+  leadershipDescription: "Velocity Marketing is led by experienced professionals with expertise across sales, marketing, retail operations, business development, and brand execution.",
 };
+
+export const LEADERSHIP_TEAM = [
+  {
+    name: "Mr. Sai Prasad",
+    role: "Head of Business",
+    image: "/assets/leader-sai-prasad.jpg",
+    bio: [
+      "Mr. Sai Prasad is the Head of Business at Velocity Marketing, bringing over 13 years of extensive experience in the FMCG, retail, and consumer products industry. He holds an MBA in Marketing from GITAM University, Visakhapatnam, which laid the foundation for his expertise in marketing, sales, and business management. Since completing his MBA, he has built a proven track record of driving business growth, strengthening market presence, and delivering successful go-to-market strategies across leading consumer brands.",
+      "Further strengthening his strategic leadership capabilities, Mr. Prasad is an Alumnus of the prestigious Indian School of Business (ISB), Hyderabad, where he successfully completed the Business Strategy Programme. This executive education has enhanced his expertise in strategic planning, competitive advantage, business transformation, and sustainable growth.",
+      "His expertise spans Brand Activation, Retail Marketing, Below-the-Line (BTL) Campaigns, Trade Marketing, Merchandising, Distribution Strategy, Consumer Engagement, Business Development, and Sales Excellence, enabling brands to effectively connect with consumers across urban and rural markets.",
+      "At Velocity Marketing, Mr. Prasad leads the company's business strategy, growth initiatives, and client partnerships, helping organizations create impactful brand experiences through innovative on-ground marketing solutions. Under his leadership, Velocity Marketing delivers end-to-end marketing execution across Brand Activations, Retail Marketing, Events & Promotions, Outdoor Advertising, Trade Marketing, Branding & Fabrication, Retail Audits, Market Intelligence, Merchandising, Promotional Campaigns, and Marketing Analytics, ensuring measurable business outcomes and long-term brand success.",
+      "Known for his customer-centric approach, strategic thinking, and execution excellence, Mr. Prasad is passionate about building high-performing marketing ecosystems where brands don't just reach consumers—they create meaningful connections, strengthen market presence, and achieve sustainable business growth."
+    ]
+  },
+  {
+    name: "Revathi",
+    role: "Head of Projects",
+    image: "/assets/leader-revathi.png",
+    bio: [
+      "Revathi, a Technology Graduate, is the key architect behind Velocity Marketing's digital vision and operational excellence. She plays a pivotal role in building the company's technology-driven ecosystem, ensuring that innovation, efficiency, and customer experience remain at the core of every solution.",
+      "With a strong analytical mindset and a passion for technology, Revathi has been instrumental in shaping Velocity Marketing's digital infrastructure, streamlining internal processes, and supporting scalable business growth. Her focus on integrating technology with marketing operations enables the company to deliver seamless execution, real-time reporting, data-driven insights, and enhanced client experiences.",
+      "As one of the driving forces behind Velocity Marketing, Revathi combines technical expertise with strategic thinking to help transform ideas into impactful business solutions. Her commitment to innovation continues to strengthen the company's mission of delivering world-class BTL marketing, branding, retail activation, and technology-enabled marketing services across India."
+    ]
+  }
+];
 
 // Client-provided example metrics — confirm before final production launch.
 export const METRICS = [
