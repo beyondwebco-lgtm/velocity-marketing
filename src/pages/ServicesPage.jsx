@@ -36,6 +36,12 @@ export const ServicesPage = ({ isStandalone = true }) => {
                   {service.intro}
                 </p>
 
+                {service.image && (
+                  <div className="mb-8 rounded-2xl overflow-hidden border border-slate-200 shadow-sm h-64 md:h-80 lg:h-96 w-full">
+                    <img src={service.image} alt={service.title} className="w-full h-full object-cover" />
+                  </div>
+                )}
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {service.subItems.map((sub, subIdx) => (
                     <MotionCard key={subIdx}>

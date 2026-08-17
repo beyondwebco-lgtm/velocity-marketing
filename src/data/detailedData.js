@@ -13,6 +13,7 @@ export const DETAILED_SERVICES = [
   {
     id: "01",
     title: "Direct Marketing",
+    image: "/assets/services_doc/image1.png",
     intro: "Connect directly with your target audience through personalized, face-to-face approaches and targeted distribution strategies that build trust and drive measurable results.",
     subItems: [
       {
@@ -36,6 +37,7 @@ export const DETAILED_SERVICES = [
   {
     id: "02",
     title: "Brand Activations",
+    image: "/assets/services_doc/image2.png",
     intro: "Create memorable customer experiences and strong connections with your audience through targeted promotional events across high-value locations.",
     subItems: [
       {
@@ -59,6 +61,7 @@ export const DETAILED_SERVICES = [
   {
     id: "03",
     title: "Outdoor Advertising",
+    image: "/assets/services_doc/image3.png",
     intro: "Build strong, continuous brand visibility in urban and rural landscapes through premium and cost-effective outdoor media strategies.",
     subItems: [
       {
@@ -78,6 +81,7 @@ export const DETAILED_SERVICES = [
   {
     id: "04",
     title: "Transit Branding",
+    image: "/assets/services_doc/image4.png",
     intro: "Turn vehicles into moving advertisements to deliver continuous, dynamic brand exposure across cities and towns.",
     subItems: [
       {
@@ -97,6 +101,7 @@ export const DETAILED_SERVICES = [
   {
     id: "05",
     title: "Retail & Merchandising",
+    image: "/assets/services_doc/image5.png",
     intro: "Enhance your in-store presence and monitor retail performance with eye-catching branding solutions and professional merchandising execution.",
     subItems: [
       {
@@ -116,6 +121,7 @@ export const DETAILED_SERVICES = [
   {
     id: "06",
     title: "Consumer Insights",
+    image: "/assets/services_doc/image6.png",
     intro: "Collect valuable customer data and deliver engaging product interactions with our trained personnel and structured research activities.",
     subItems: [
       {
@@ -131,6 +137,7 @@ export const DETAILED_SERVICES = [
   {
     id: "07",
     title: "Rural Marketing",
+    image: "/assets/services_doc/image7.png",
     intro: "Expand your brand's reach and impact into deep rural markets with highly localized engagement strategies.",
     subItems: [
       {
@@ -142,6 +149,7 @@ export const DETAILED_SERVICES = [
   {
     id: "08",
     title: "Events & Entertainment",
+    image: "/assets/services_doc/image8.png",
     intro: "Execute impactful promotional events and captive entertainment advertising for maximum brand recall and audience engagement.",
     subItems: [
       {
