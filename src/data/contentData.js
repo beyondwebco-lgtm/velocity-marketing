@@ -40,7 +40,7 @@ export const LEADERSHIP_TEAM = [
   {
     name: "Mr. Sai Prasad",
     role: "Head of Business",
-    image: "/assets/leader-sai-prasad.jpg",
+    image: "/assets/leader-revathi.png",
     bio: [
       "Mr. Sai Prasad is the Head of Business at Velocity Marketing, bringing over 13 years of extensive experience in the FMCG, retail, and consumer products industry. He holds an MBA in Marketing from GITAM University, Visakhapatnam, which laid the foundation for his expertise in marketing, sales, and business management. Since completing his MBA, he has built a proven track record of driving business growth, strengthening market presence, and delivering successful go-to-market strategies across leading consumer brands.",
       "Further strengthening his strategic leadership capabilities, Mr. Prasad is an Alumnus of the prestigious Indian School of Business (ISB), Hyderabad, where he successfully completed the Business Strategy Programme. This executive education has enhanced his expertise in strategic planning, competitive advantage, business transformation, and sustainable growth.",
@@ -52,7 +52,7 @@ export const LEADERSHIP_TEAM = [
   {
     name: "Revathi",
     role: "Head of Projects",
-    image: "/assets/leader-revathi.png",
+    image: "/assets/leader-sai-prasad.jpg",
     bio: [
       "Revathi, a Technology Graduate, is the key architect behind Velocity Marketing's digital vision and operational excellence. She plays a pivotal role in building the company's technology-driven ecosystem, ensuring that innovation, efficiency, and customer experience remain at the core of every solution.",
       "With a strong analytical mindset and a passion for technology, Revathi has been instrumental in shaping Velocity Marketing's digital infrastructure, streamlining internal processes, and supporting scalable business growth. Her focus on integrating technology with marketing operations enables the company to deliver seamless execution, real-time reporting, data-driven insights, and enhanced client experiences.",
