@@ -113,7 +113,7 @@ export const SERVICES = [
     title: "Direct Marketing",
     shortDesc: "Connect directly with your target audience through personalized, face-to-face approaches and targeted distribution.",
     icon: "Users",
-    image: "/assets/services/Events & Promotions.png",
+    image: "/assets/services_doc/image1.png",
     items: [
       "Door-to-Door Marketing",
       "Leaflet Insertion",
@@ -127,7 +127,7 @@ export const SERVICES = [
     title: "Brand Activations",
     shortDesc: "Create memorable customer experiences and strong connections with your audience through targeted promotional events.",
     icon: "Sparkles",
-    image: "/assets/services/Brand Activations.png",
+    image: "/assets/services_doc/image2.png",
     items: [
       "Mall Activations",
       "Apartment Activations",
@@ -141,7 +141,7 @@ export const SERVICES = [
     title: "Outdoor Advertising",
     shortDesc: "Build strong, continuous brand visibility in urban and rural landscapes through premium outdoor media strategies.",
     icon: "MapPin",
-    image: "/assets/services/outdoor activation.png",
+    image: "/assets/services_doc/image3.png",
     items: [
       "Hoardings & Billboards",
       "No Parking Board Branding",
@@ -154,7 +154,7 @@ export const SERVICES = [
     title: "Transit Branding",
     shortDesc: "Turn vehicles into moving advertisements to deliver continuous, dynamic brand exposure across cities and towns.",
     icon: "Truck",
-    image: "/assets/services/Logistics & Operations.png",
+    image: "/assets/services_doc/image4.png",
     items: [
       "Auto Branding",
       "Van Campaigns",
@@ -167,7 +167,7 @@ export const SERVICES = [
     title: "Retail & Merchandising",
     shortDesc: "Enhance your in-store presence and monitor retail performance with eye-catching branding solutions.",
     icon: "ShoppingBag",
-    image: "/assets/services/Retail marketing.png",
+    image: "/assets/services_doc/image5.png",
     items: [
       "Retail Branding",
       "Merchandising Services",
@@ -180,7 +180,7 @@ export const SERVICES = [
     title: "Consumer Insights",
     shortDesc: "Collect valuable customer data and deliver engaging product interactions with our trained personnel.",
     icon: "PieChart",
-    image: "/assets/services/Audit & Analytics.png",
+    image: "/assets/services_doc/image6.png",
     items: [
       "Brand Promoters",
       "Consumer Surveys"
@@ -192,7 +192,7 @@ export const SERVICES = [
     title: "Rural Marketing",
     shortDesc: "Expand your brands reach and impact into deep rural markets with highly localized engagement strategies.",
     icon: "Map",
-    image: "/assets/services/Digital Support.png",
+    image: "/assets/services_doc/image7.png",
     items: [
       "Village Activations",
       "Haat Promotions",
@@ -205,7 +205,7 @@ export const SERVICES = [
     title: "Events & Entertainment",
     shortDesc: "Execute impactful promotional events and captive entertainment advertising for maximum brand recall.",
     icon: "Calendar",
-    image: "/assets/services/Events & Promotions.png",
+    image: "/assets/services_doc/image8.png",
     items: [
       "Event Management",
       "Brand Activations",

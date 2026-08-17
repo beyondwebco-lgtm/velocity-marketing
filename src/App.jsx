@@ -23,10 +23,16 @@ const HomePage = ({ handleOpenQuote }) => (
   <main>
     <Hero onOpenQuote={handleOpenQuote} />
     <ClientEcosystem onOpenQuote={handleOpenQuote} />
-    <AboutUsPage isStandalone={false} />
-    <Services />
-    <ServicesPage isStandalone={false} />
-    <ProcessPage isStandalone={false} />
+    <div id="about">
+      <AboutUsPage isStandalone={false} />
+    </div>
+    <div id="services">
+      <Services />
+      <ServicesPage isStandalone={false} />
+    </div>
+    <div id="process">
+      <ProcessPage isStandalone={false} />
+    </div>
     <IndustriesGrid />
     <HowWeDeliver />
     <CoverageNetwork onOpenQuote={handleOpenQuote} />

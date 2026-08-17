@@ -32,9 +32,9 @@ export const Header = ({ onOpenQuote }) => {
 
   const navLinks = [
     { name: 'HOME', href: '/' },
-    { name: 'ABOUT US', href: '/about' },
-    { name: 'OUR SERVICES', href: '/services' },
-    { name: 'OUR PROCESS', href: '/process' },
+    { name: 'ABOUT US', href: '/#about' },
+    { name: 'OUR SERVICES', href: '/#services' },
+    { name: 'OUR PROCESS', href: '/#process' },
     { name: 'HOW WE DELIVER', href: '/#how-we-deliver' },
     { name: 'CONTACT US', href: '/#contact' },
   ];
