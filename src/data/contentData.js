@@ -104,145 +104,115 @@ export const WHY_CHOOSE_US = [
 export const SERVICES_SECTION = {
   label: "WHAT WE DO",
   heading: "Our Services",
-  intro: "Velocity Marketing provides comprehensive end-to-end marketing execution services designed to support every stage of the customer journey.",
+  intro: "Velocity Marketing is a leading BTL (Below-the-Line) marketing agency delivering innovative, result-driven on-ground brand activation solutions across India. We specialize in creating impactful consumer experiences through product sampling, retail branding, outdoor advertising, transit branding, rural marketing, corporate activations, and promotional campaigns. With a skilled execution team and nationwide network, we help brands increase visibility, engage target audiences, generate quality leads, and drive measurable business growth through customized marketing solutions.",
 };
 
 export const SERVICES = [
   {
     id: "01",
-    title: "Brand Activation",
-    shortDesc: "Transform brands into memorable experiences that increase product awareness, drive consumer engagement, and boost sales.",
-    icon: "Sparkles",
-    image: "/assets/services/Brand Activations.png",
+    title: "Direct Marketing",
+    shortDesc: "Connect directly with your target audience through personalized, face-to-face approaches and targeted distribution.",
+    icon: "Users",
+    image: "/assets/services/Events & Promotions.png",
     items: [
-      "Product Sampling",
-      "Product Demonstrations",
-      "Brand Promotions",
-      "Consumer Engagement Campaigns",
-      "New Product Launches",
-      "Mall Activations",
-      "Society Activations",
-      "Corporate Park Activations",
-      "College Activations",
-      "In-store Promotions",
+      "Door-to-Door Marketing",
+      "Leaflet Insertion",
+      "Leaflet Distribution",
+      "Product Sampling"
     ],
-    detailedDesc: "At Velocity Marketing Agency, we transform brands into memorable experiences through innovative activation campaigns. Our team designs and executes high-impact marketing programs that increase product awareness, drive consumer engagement, and boost sales across urban and rural markets."
+    detailedDesc: "Connect directly with your target audience through our Door-to-Door Marketing services and targeted distribution strategies that build trust and drive measurable results."
   },
   {
     id: "02",
-    title: "Retail Marketing",
-    shortDesc: "Strengthen retail presence by delivering consistent in-store execution, enhancing product visibility, and creating engaging shopping experiences.",
-    icon: "ShoppingBag",
-    image: "/assets/services/Retail marketing.png",
+    title: "Brand Activations",
+    shortDesc: "Create memorable customer experiences and strong connections with your audience through targeted promotional events.",
+    icon: "Sparkles",
+    image: "/assets/services/Brand Activations.png",
     items: [
-      "Merchandising",
-      "Shelf Audits",
-      "Planogram Execution",
-      "POP/POSM Installation",
-      "Retail Branding",
-      "Shop Branding",
-      "Visual Merchandising",
-      "Store Launch Support",
+      "Mall Activations",
+      "Apartment Activations",
+      "Corporate Activations",
+      "School & College Campaigns"
     ],
-    detailedDesc: "We help brands strengthen their retail presence by delivering consistent in-store execution, enhancing product visibility, and creating engaging shopping experiences across General Trade, Modern Trade, and Organized Retail."
+    detailedDesc: "Create memorable customer experiences and strong connections with your audience through targeted promotional events across high-value locations."
   },
   {
     id: "03",
-    title: "Outdoor Activations",
-    shortDesc: "Maximize brand visibility and engage consumers through interactive experiences in high-footfall public locations.",
+    title: "Outdoor Advertising",
+    shortDesc: "Build strong, continuous brand visibility in urban and rural landscapes through premium outdoor media strategies.",
     icon: "MapPin",
     image: "/assets/services/outdoor activation.png",
     items: [
-      "Roadshows",
-      "Van Campaigns",
-      "Mobile LED Van Promotions",
-      "Rural Marketing",
-      "Village Contact Programs",
-      "Door-to-Door Promotions",
-      "Street Promotions",
+      "Hoardings & Billboards",
+      "No Parking Board Branding",
+      "Wall Painting"
     ],
-    detailedDesc: "Outdoor Activations are promotional marketing activities conducted in high-footfall public locations such as busy streets, markets, parks, beaches, bus terminals, railway stations, airports, tourist destinations, exhibitions, and public events. In Velocity Marketing, outdoor activations are designed to maximize brand visibility, engage consumers through interactive experiences, create memorable brand interactions, and generate immediate product awareness and sales opportunities."
+    detailedDesc: "Build strong, continuous brand visibility in urban and rural landscapes through premium and cost-effective outdoor media strategies."
   },
   {
     id: "04",
-    title: "Events & Promotions",
-    shortDesc: "Strengthen relationships with dealers, distributors, retailers, and corporate partners through professionally managed events.",
-    icon: "Calendar",
-    image: "/assets/services/Events & Promotions.png",
-    items: [
-      "Dealer Meets",
-      "Distributor Meets",
-      "Retailer Meets",
-      "Channel Partner Events",
-      "Corporate Events",
-      "Exhibitions & Trade Shows",
-    ],
-    detailedDesc: "Events & Promotions are organized to build stronger relationships with dealers, distributors, retailers, and other business partners. These events include networking sessions, product launches, training, and award ceremonies. They improve collaboration and align partners with business objectives."
-  },
-  {
-    id: "05",
-    title: "Digital Support",
-    shortDesc: "Connect physical marketing activities with digital engagement through QR campaigns, lead generation, and customer feedback.",
-    icon: "Smartphone",
-    image: "/assets/services/Digital Support.png",
-    items: [
-      "QR Code Campaigns",
-      "Lead Generation Campaigns",
-      "WhatsApp Marketing",
-      "Survey Collection",
-      "Consumer Feedback Programs",
-    ],
-    detailedDesc: "Digital Support integrates physical marketing with digital tools to capture leads, gather feedback, and communicate directly with customers via QR codes, WhatsApp marketing, and surveys."
-  },
-  {
-    id: "06",
-    title: "Branding & Fabrication",
-    shortDesc: "Create a strong and consistent physical brand presence with professionally designed kiosks, stalls, and display units.",
-    icon: "PenTool",
-    image: "/assets/services/Branding & Fabrication.png",
-    items: [
-      "Kiosks",
-      "Exhibition Stalls",
-      "Display Units",
-      "Glow Sign Boards",
-      "Fabrication & Installation",
-    ],
-    detailedDesc: "Branding & Fabrication involves designing, manufacturing, and setting up branding materials such as kiosks, display units, signboards, and exhibition stalls. The process ensures high-quality construction and professional installation according to brand standards."
-  },
-  {
-    id: "07",
-    title: "Audit & Analytics",
-    shortDesc: "Gain valuable market insights through retail audits, GPS tracking, live photo reporting, and ROI measurement.",
-    icon: "BarChart3",
-    image: "/assets/services/Audit & Analytics.png",
-    items: [
-      "Retail Audits",
-      "Mystery Shopping",
-      "Competitor Analysis",
-      "Market Surveys",
-      "Campaign Reporting",
-      "GPS Attendance Tracking",
-      "Live Photo Reporting",
-      "ROI Measurement",
-    ],
-    detailedDesc: "Audit & Analytics provide brands with clear visibility into field execution, consumer behavior, campaign quality, and performance. Features like GPS Attendance Tracking and Live Photo Reporting ensure transparency and operational efficiency."
-  },
-  {
-    id: "08",
-    title: "Logistics & Operations",
-    shortDesc: "Ensure smooth nationwide campaign execution with expert planning, warehousing, and inventory management.",
+    title: "Transit Branding",
+    shortDesc: "Turn vehicles into moving advertisements to deliver continuous, dynamic brand exposure across cities and towns.",
     icon: "Truck",
     image: "/assets/services/Logistics & Operations.png",
     items: [
-      "Campaign Planning",
-      "PAN India Execution",
-      "Warehousing & Distribution",
-      "Promotional Material Distribution",
-      "Inventory Management",
-      "Permission & Compliance Support",
+      "Auto Branding",
+      "Van Campaigns",
+      "Audio Announcements"
     ],
-    detailedDesc: "Logistics & Operations provide the operational backbone required for smooth multi-location campaign execution. Efficient warehouse management, material distribution, and compliance support ensure timely availability of inventory and reduce operational delays."
+    detailedDesc: "Turn vehicles into moving advertisements to deliver continuous, dynamic brand exposure across cities and towns."
   },
+  {
+    id: "05",
+    title: "Retail & Merchandising",
+    shortDesc: "Enhance your in-store presence and monitor retail performance with eye-catching branding solutions.",
+    icon: "ShoppingBag",
+    image: "/assets/services/Retail marketing.png",
+    items: [
+      "Retail Branding",
+      "Merchandising Services",
+      "Retail Audits"
+    ],
+    detailedDesc: "Enhance your in-store presence and monitor retail performance with eye-catching branding solutions and professional merchandising execution."
+  },
+  {
+    id: "06",
+    title: "Consumer Insights",
+    shortDesc: "Collect valuable customer data and deliver engaging product interactions with our trained personnel.",
+    icon: "PieChart",
+    image: "/assets/services/Audit & Analytics.png",
+    items: [
+      "Brand Promoters",
+      "Consumer Surveys"
+    ],
+    detailedDesc: "Collect valuable customer data and deliver engaging product interactions with our trained personnel and structured research activities."
+  },
+  {
+    id: "07",
+    title: "Rural Marketing",
+    shortDesc: "Expand your brands reach and impact into deep rural markets with highly localized engagement strategies.",
+    icon: "Map",
+    image: "/assets/services/Digital Support.png",
+    items: [
+      "Village Activations",
+      "Haat Promotions",
+      "Community Engagement"
+    ],
+    detailedDesc: "Expand your brands reach and impact into deep rural markets with highly localized engagement strategies."
+  },
+  {
+    id: "08",
+    title: "Events & Entertainment",
+    shortDesc: "Execute impactful promotional events and captive entertainment advertising for maximum brand recall.",
+    icon: "Calendar",
+    image: "/assets/services/Events & Promotions.png",
+    items: [
+      "Event Management",
+      "Brand Activations",
+      "Theatre Branding"
+    ],
+    detailedDesc: "Execute impactful promotional events and captive entertainment advertising for maximum brand recall and audience engagement."
+  }
 ];
 
 export const INDUSTRIES = [

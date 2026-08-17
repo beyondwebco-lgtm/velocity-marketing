@@ -1,14 +1,6 @@
-export const STATISTICS = [
-  { label: "Cities Covered", value: "10+", note: "Across South India" },
-  { label: "Campaigns Executed", value: "500+", note: "" },
-  { label: "Brand Activations", value: "300+", note: "" },
-  { label: "Product Demonstrations", value: "2,000+", note: "" },
-  { label: "Consumer Engagement Events", value: "1,000+", note: "" },
-  { label: "Trained Promoters & Merchandisers", value: "250+", note: "" },
-  { label: "Happy Clients", value: "25+", note: "" },
-  { label: "Retail Stores Covered", value: "5,000+", note: "" }
-];
+const fs = require('fs');
 
+const servicesContent = `
 export const DETAILED_SERVICES = [
   {
     id: "01",
@@ -155,3 +147,7 @@ export const DETAILED_SERVICES = [
     ]
   }
 ];
+`;
+
+fs.writeFileSync('/Users/saipavan/Desktop/BeyondWebco/Velocity Marketing/src/data/detailedData.js', servicesContent);
+console.log('detailedData.js updated successfully!');
