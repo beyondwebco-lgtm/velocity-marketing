@@ -1,6 +1,7 @@
 import React from 'react';
 import { STATISTICS } from '../data/detailedData';
 import { MotionSection, MotionGrid, MotionCard } from './MotionWrapper';
+import { CountUp } from './CountUp';
 
 export const StatisticsSection = () => {
   return (
@@ -14,7 +15,7 @@ export const StatisticsSection = () => {
             <span>At a Glance</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-            Velocity Marketing by the Numbers
+            Velocity Marketing at a Glance
           </h2>
         </div>
 
@@ -23,7 +24,7 @@ export const StatisticsSection = () => {
             <MotionCard key={idx}>
               <div className="bg-blue-800/40 backdrop-blur-sm border border-blue-700/50 rounded-2xl p-6 text-center h-full flex flex-col justify-center items-center hover:bg-blue-700/50 transition-all duration-300">
                 <span className="text-4xl md:text-5xl font-extrabold text-white mb-2 tracking-tight">
-                  {stat.value}
+                  <CountUp value={stat.value} duration={2000} />
                 </span>
                 <span className="font-medium text-blue-200 text-sm md:text-base leading-snug">
                   {stat.label}

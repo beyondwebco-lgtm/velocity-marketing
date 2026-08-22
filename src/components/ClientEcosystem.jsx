@@ -13,8 +13,32 @@ export const ClientEcosystem = () => {
     "Sun Pharma": "/assets/clients/sun-pharma.png"
   };
 
-  // Duplicate list to ensure a seamless repeating loop
-  const marqueeItems = [...CLIENT_PARTNERS, ...CLIENT_PARTNERS, ...CLIENT_PARTNERS];
+  const renderLogoTrack = () => (
+    <div className="flex space-x-8 animate-marquee py-4 flex-shrink-0">
+      {CLIENT_PARTNERS.map((client, idx) => (
+        <div
+          key={idx}
+          className="flex items-center space-x-4 bg-slate-50 border border-slate-200/80 rounded-2xl p-4 min-w-[280px] shadow-sm hover:shadow-md hover:border-blue-400 hover:bg-white transition-all duration-300 group flex-shrink-0"
+        >
+          <div className="w-16 h-12 flex items-center justify-center bg-white rounded-xl p-1.5 border border-slate-100 flex-shrink-0 shadow-sm">
+            <img 
+              src={clientLogos[client.name]} 
+              alt={`${client.name} logo`} 
+              className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+          <div className="text-left">
+            <h4 className="font-extrabold text-slate-900 text-sm tracking-tight leading-snug group-hover:text-blue-700 transition-colors">
+              {client.name}
+            </h4>
+            <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400 group-hover:text-blue-500 transition-colors block mt-0.5">
+              {client.category}
+            </span>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
 
   return (
     <MotionSection id="clients" dataTheme="light" className="py-20 relative overflow-hidden bg-white border-y border-slate-200">
@@ -31,37 +55,17 @@ export const ClientEcosystem = () => {
         </div>
 
         {/* Marquee Wrapper */}
-        <div className="w-full overflow-hidden relative select-none">
+        <div className="w-full overflow-hidden flex relative select-none">
           {/* Gradient Overlay left */}
-          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none" />
           
           {/* Gradient Overlay right */}
-          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none" />
 
-          {/* Scrolling Row */}
-          <div className="flex space-x-8 animate-marquee py-4">
-            {marqueeItems.map((client, idx) => (
-              <div
-                key={idx}
-                className="flex items-center space-x-4 bg-slate-50 border border-slate-200/80 rounded-2xl p-4 min-w-[280px] shadow-sm hover:shadow-md hover:border-blue-400 hover:bg-white transition-all duration-300 group flex-shrink-0"
-              >
-                <div className="w-16 h-12 flex items-center justify-center bg-white rounded-xl p-1.5 border border-slate-100 flex-shrink-0 shadow-sm">
-                  <img 
-                    src={clientLogos[client.name]} 
-                    alt={`${client.name} logo`} 
-                    className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-                <div className="text-left">
-                  <h4 className="font-extrabold text-slate-900 text-sm tracking-tight leading-snug group-hover:text-blue-700 transition-colors">
-                    {client.name}
-                  </h4>
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400 group-hover:text-blue-500 transition-colors block mt-0.5">
-                    {client.category}
-                  </span>
-                </div>
-              </div>
-            ))}
+          {/* We render two identical tracks side-by-side for a perfectly infinite scrolling marquee */}
+          <div className="flex space-x-8 flex-shrink-0">
+            {renderLogoTrack()}
+            {renderLogoTrack()}
           </div>
         </div>
 

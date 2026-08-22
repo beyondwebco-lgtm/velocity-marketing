@@ -6,7 +6,7 @@ import { Hero } from './components/Hero';
 import { Services } from './components/Services';
 import { CoverageNetwork } from './components/CoverageNetwork';
 import { ClientEcosystem } from './components/ClientEcosystem';
-import { WhyUsAndContact } from './components/WhyUsAndContact';
+import { WhyUs, ContactSection } from './components/WhyUsAndContact';
 import { ProposalModal } from './components/ProposalModal';
 import { Footer } from './components/Footer';
 import { AboutSection } from './components/AboutSection';
@@ -36,8 +36,9 @@ const HomePage = ({ handleOpenQuote }) => (
     <HowWeDeliver />
     <CoverageNetwork onOpenQuote={handleOpenQuote} />
     <StatisticsSection />
-    <WhyUsAndContact onOpenQuote={handleOpenQuote} />
+    <WhyUs />
     <ClientEcosystem onOpenQuote={handleOpenQuote} />
+    <ContactSection onOpenQuote={handleOpenQuote} />
   </main>
 );
 
