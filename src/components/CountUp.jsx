@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 export const CountUp = ({ value, duration = 2000 }) => {
   const [displayValue, setDisplayValue] = useState(0);
   const elementRef = useRef(null);
-  const [hasAnimated, setHasAnimated] = useState(false);
+  const hasStarted = useRef(false);
 
   // Parse numeric portion and suffix/prefix (e.g., "5,000+" -> num: 5000, prefix: "", suffix: "+")
   const parseValue = (valStr) => {
@@ -22,42 +22,56 @@ export const CountUp = ({ value, duration = 2000 }) => {
   const { num, suffix, prefix } = parseValue(value);
 
   useEffect(() => {
+    let active = true;
+    let rafId = null;
+
+    const startAnimation = () => {
+      if (hasStarted.current) return;
+      hasStarted.current = true;
+
+      let startTime = null;
+      const animate = (currentTime) => {
+        if (!active) return;
+        if (!startTime) startTime = currentTime;
+        const progress = Math.min((currentTime - startTime) / duration, 1);
+        
+        // Smooth easeOutExpo transition
+        const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+        const currentNum = Math.floor(easeProgress * num);
+
+        setDisplayValue(currentNum);
+
+        if (progress < 1) {
+          rafId = requestAnimationFrame(animate);
+        } else {
+          setDisplayValue(num);
+        }
+      };
+
+      rafId = requestAnimationFrame(animate);
+    };
+
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
-        if (entry.isIntersecting && !hasAnimated) {
-          setHasAnimated(true);
-
-          let startTime = null;
-          const animate = (currentTime) => {
-            if (!startTime) startTime = currentTime;
-            const progress = Math.min((currentTime - startTime) / duration, 1);
-            
-            // Smooth easeOutExpo transition
-            const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-            const currentNum = Math.floor(easeProgress * num);
-
-            setDisplayValue(currentNum);
-
-            if (progress < 1) {
-              requestAnimationFrame(animate);
-            } else {
-              setDisplayValue(num);
-            }
-          };
-
-          requestAnimationFrame(animate);
+        if (entry.isIntersecting) {
+          startAnimation();
+          observer.disconnect();
         }
       },
-      { threshold: 0.05 }
+      { threshold: 0.01 }
     );
 
     if (elementRef.current) {
       observer.observe(elementRef.current);
     }
 
-    return () => observer.disconnect();
-  }, [num, duration, hasAnimated]);
+    return () => {
+      active = false;
+      if (rafId) cancelAnimationFrame(rafId);
+      observer.disconnect();
+    };
+  }, [num, duration]);
 
   return (
     <span ref={elementRef} className="inline-block tabular-nums">
