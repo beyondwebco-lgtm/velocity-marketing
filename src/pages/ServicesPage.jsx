@@ -31,33 +31,34 @@ export const ServicesPage = ({ isStandalone = true }) => {
         </div>
 
         {/* Search Bar */}
-        <div className="max-w-md mx-auto mb-12 relative">
+        <div className="max-w-xl mx-auto mb-16 relative">
           <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
             <Search className="w-5 h-5 text-slate-400" />
           </div>
           <input
+            id="service-search-input"
             type="text"
             placeholder="Search services (e.g. Sampling, Van, Retail)..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-12 pr-4 py-3.5 bg-white border border-slate-200 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 font-medium text-slate-800 placeholder:text-slate-400"
+            className="w-full pl-12 pr-4 py-4 bg-white border-2 border-slate-200 rounded-2xl shadow-sm focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all duration-300 font-bold text-slate-800 placeholder:text-slate-400 text-lg"
           />
         </div>
 
-        {/* Services Grid */}
+        {/* Services List (Horizontal Layout) */}
         {filteredServices.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredServices.map((service, index) => (
+          <div className="space-y-8">
+            {filteredServices.map((service) => (
               <MotionCard key={service.id}>
-                <div className="bg-white rounded-3xl overflow-hidden border border-slate-200 hover:border-blue-300 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col h-full group">
+                <div className="bg-white rounded-3xl overflow-hidden border border-slate-200 hover:border-blue-300 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col md:flex-row items-stretch group min-h-[300px]">
                   
-                  {/* Service Image */}
+                  {/* Service Image Container - Contain Mode for Full Image */}
                   {service.image && (
-                    <div className="h-56 w-full overflow-hidden relative bg-slate-100">
+                    <div className="md:w-1/2 bg-slate-100 flex items-center justify-center p-6 border-b md:border-b-0 md:border-r border-slate-200 overflow-hidden relative">
                       <img 
                         src={service.image} 
                         alt={service.title} 
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                        className="w-full h-full max-h-[280px] object-contain group-hover:scale-[1.02] transition-transform duration-500" 
                       />
                       <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full border border-slate-200 text-xs font-mono font-bold text-blue-700 shadow-sm">
                         {service.id}
@@ -65,20 +66,20 @@ export const ServicesPage = ({ isStandalone = true }) => {
                     </div>
                   )}
 
-                  {/* Card content */}
-                  <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between space-y-4">
+                  {/* Card Content */}
+                  <div className="p-8 md:w-1/2 flex flex-col justify-between space-y-6">
                     <div className="space-y-3">
-                      <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 group-hover:text-blue-700 transition-colors leading-tight">
+                      <h3 className="text-2xl font-black text-slate-900 group-hover:text-blue-700 transition-colors leading-tight">
                         {service.title}
                       </h3>
-                      <p className="text-slate-600 text-sm leading-relaxed font-medium">
+                      <p className="text-slate-600 text-base leading-relaxed font-medium">
                         {service.desc}
                       </p>
                     </div>
 
                     <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-mono font-bold text-slate-400">
                       <span className="flex items-center text-emerald-600">
-                        <Check className="w-4 h-4 mr-1 flex-shrink-0" /> PAN India Execution
+                        <Check className="w-4 h-4 mr-1.5 flex-shrink-0" /> PAN India Execution
                       </span>
                     </div>
                   </div>
@@ -87,13 +88,13 @@ export const ServicesPage = ({ isStandalone = true }) => {
             ))}
           </div>
         ) : (
-          <div className="text-center py-12 bg-white rounded-3xl border border-dashed border-slate-300">
-            <p className="text-slate-500 font-medium">No services found matching "{searchQuery}"</p>
+          <div className="text-center py-16 bg-white rounded-3xl border border-dashed border-slate-300">
+            <p className="text-slate-500 font-medium text-lg">No services found matching "{searchQuery}"</p>
           </div>
         )}
 
         {/* Bottom CTA */}
-        <MotionSection className="mt-20">
+        <MotionSection className="mt-24">
           <div className="bg-blue-600 rounded-3xl p-8 sm:p-12 text-center shadow-xl shadow-blue-900/20 text-white">
             <h2 className="text-3xl font-black mb-6">Ready to Accelerate Your Brand?</h2>
             <p className="text-blue-100 mb-8 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">

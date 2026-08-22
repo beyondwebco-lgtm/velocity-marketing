@@ -1,7 +1,6 @@
 import React from 'react';
 import { CLIENT_PARTNERS, CLIENT_SECTION } from '../data/contentData';
-import { Award } from 'lucide-react';
-import { MotionSection, MotionGrid, MotionCard } from './MotionWrapper';
+import { MotionSection } from './MotionWrapper';
 
 export const ClientEcosystem = () => {
   const clientLogos = {
@@ -14,41 +13,58 @@ export const ClientEcosystem = () => {
     "Sun Pharma": "/assets/clients/sun-pharma.png"
   };
 
+  // Duplicate list to ensure a seamless repeating loop
+  const marqueeItems = [...CLIENT_PARTNERS, ...CLIENT_PARTNERS, ...CLIENT_PARTNERS];
+
   return (
-    <MotionSection id="clients" dataTheme="light" className="py-20 relative overflow-hidden bg-white border-b border-slate-200">
+    <MotionSection id="clients" dataTheme="light" className="py-20 relative overflow-hidden bg-white border-y border-slate-200">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-12">
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
             {CLIENT_SECTION.heading}
           </h2>
-          <p className="text-slate-600 text-sm sm:text-base font-normal">
+          <p className="text-slate-600 text-base leading-relaxed font-medium">
             {CLIENT_SECTION.description}
           </p>
         </div>
 
-        {/* Client Partners Showcase Row */}
-        <MotionGrid className="grid grid-cols-2 md:grid-cols-4 gap-6" staggerDelay={0.1}>
-          {CLIENT_PARTNERS.map((client, idx) => (
-            <MotionCard key={idx}>
+        {/* Marquee Wrapper */}
+        <div className="w-full overflow-hidden relative select-none">
+          {/* Gradient Overlay left */}
+          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+          
+          {/* Gradient Overlay right */}
+          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+
+          {/* Scrolling Row */}
+          <div className="flex space-x-8 animate-marquee py-4">
+            {marqueeItems.map((client, idx) => (
               <div
-                className="p-6 rounded-2xl border border-slate-100 bg-slate-50 hover:bg-white hover:shadow-md transition-all h-full flex flex-col items-center justify-center text-center group"
+                key={idx}
+                className="flex items-center space-x-4 bg-slate-50 border border-slate-200/80 rounded-2xl p-4 min-w-[280px] shadow-sm hover:shadow-md hover:border-blue-400 hover:bg-white transition-all duration-300 group flex-shrink-0"
               >
-                <div className="h-16 w-full flex items-center justify-center mb-4">
+                <div className="w-16 h-12 flex items-center justify-center bg-white rounded-xl p-1.5 border border-slate-100 flex-shrink-0 shadow-sm">
                   <img 
                     src={clientLogos[client.name]} 
                     alt={`${client.name} logo`} 
-                    className="max-h-full max-w-full object-contain"
+                    className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
-                <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400 group-hover:text-blue-600 transition-colors">
-                  {client.category}
+                <div className="text-left">
+                  <h4 className="font-extrabold text-slate-900 text-sm tracking-tight leading-snug group-hover:text-blue-700 transition-colors">
+                    {client.name}
+                  </h4>
+                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400 group-hover:text-blue-500 transition-colors block mt-0.5">
+                    {client.category}
+                  </span>
                 </div>
               </div>
-            </MotionCard>
-          ))}
-        </MotionGrid>
+            ))}
+          </div>
+        </div>
+
       </div>
     </MotionSection>
   );

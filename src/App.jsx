@@ -22,7 +22,6 @@ import { ProcessSection } from './components/ProcessSection';
 const HomePage = ({ handleOpenQuote }) => (
   <main>
     <Hero onOpenQuote={handleOpenQuote} />
-    <ClientEcosystem onOpenQuote={handleOpenQuote} />
     <div id="about">
       <AboutUsPage isStandalone={false} />
     </div>
@@ -38,6 +37,7 @@ const HomePage = ({ handleOpenQuote }) => (
     <CoverageNetwork onOpenQuote={handleOpenQuote} />
     <StatisticsSection />
     <WhyUsAndContact onOpenQuote={handleOpenQuote} />
+    <ClientEcosystem onOpenQuote={handleOpenQuote} />
   </main>
 );
 
