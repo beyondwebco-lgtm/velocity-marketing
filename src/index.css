@@ -102,6 +102,7 @@
 /* Smooth Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
 ::-webkit-scrollbar-track {
   background: #F8FAFC;
@@ -112,4 +113,13 @@
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #2563EB;
+}
+
+/* Hide scrollbar for elements with scrollbar-hide */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
