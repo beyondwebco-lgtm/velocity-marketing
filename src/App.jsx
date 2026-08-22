@@ -1,44 +1,118 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense, useRef } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Preloader } from './components/Preloader';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { Services } from './components/Services';
-import { CoverageNetwork } from './components/CoverageNetwork';
-import { ClientEcosystem } from './components/ClientEcosystem';
-import { WhyUs, ContactSection } from './components/WhyUsAndContact';
 import { ProposalModal } from './components/ProposalModal';
 import { Footer } from './components/Footer';
-import { AboutSection } from './components/AboutSection';
-import { IndustriesGrid } from './components/IndustriesGrid';
-import { HowWeDeliver } from './components/HowWeDeliver';
-import { ServicesPage } from './pages/ServicesPage';
-import { ProcessPage } from './pages/ProcessPage';
-import { AboutUsPage } from './pages/AboutUsPage';
 import { WhatsAppButton } from './components/WhatsAppButton';
-import { StatisticsSection } from './components/StatisticsSection';
-import { ProcessSection } from './components/ProcessSection';
+
+// Lazy Loaded Heavy Components & Pages
+const AboutUsPage = lazy(() => import('./pages/AboutUsPage').then(module => ({ default: module.AboutUsPage })));
+const ServicesPage = lazy(() => import('./pages/ServicesPage').then(module => ({ default: module.ServicesPage })));
+const ProcessPage = lazy(() => import('./pages/ProcessPage').then(module => ({ default: module.ProcessPage })));
+const CoverageNetwork = lazy(() => import('./components/CoverageNetwork').then(module => ({ default: module.CoverageNetwork })));
+const ClientEcosystem = lazy(() => import('./components/ClientEcosystem').then(module => ({ default: module.ClientEcosystem })));
+const StatisticsSection = lazy(() => import('./components/StatisticsSection').then(module => ({ default: module.StatisticsSection })));
+const IndustriesGrid = lazy(() => import('./components/IndustriesGrid').then(module => ({ default: module.IndustriesGrid })));
+const HowWeDeliver = lazy(() => import('./components/HowWeDeliver').then(module => ({ default: module.HowWeDeliver })));
+const WhyUs = lazy(() => import('./components/WhyUsAndContact').then(module => ({ default: module.WhyUs })));
+const ContactSection = lazy(() => import('./components/WhyUsAndContact').then(module => ({ default: module.ContactSection })));
+
+// Helper wrapper to defer loading until component is near viewport
+const IntersectionDeferred = ({ children, height = '300px' }) => {
+  const [load, setLoad] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setLoad(true);
+        observer.disconnect();
+      }
+    }, { rootMargin: '300px' });
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} className="w-full">
+      {load ? children : <div style={{ height }} className="bg-transparent" />}
+    </div>
+  );
+};
 
 const HomePage = ({ handleOpenQuote }) => (
   <main>
     <Hero onOpenQuote={handleOpenQuote} />
-    <div id="about">
-      <AboutUsPage isStandalone={false} />
-    </div>
+    
+    <IntersectionDeferred height="800px">
+      <Suspense fallback={<div className="h-96" />}>
+        <div id="about">
+          <AboutUsPage isStandalone={false} />
+        </div>
+      </Suspense>
+    </IntersectionDeferred>
+
     <div id="services">
       <Services />
-      <ServicesPage isStandalone={false} />
+      <IntersectionDeferred height="800px">
+        <Suspense fallback={<div className="h-96" />}>
+          <ServicesPage isStandalone={false} />
+        </Suspense>
+      </IntersectionDeferred>
     </div>
-    <div id="process">
-      <ProcessPage isStandalone={false} />
-    </div>
-    <IndustriesGrid />
-    <HowWeDeliver />
-    <CoverageNetwork onOpenQuote={handleOpenQuote} />
-    <StatisticsSection />
-    <WhyUs />
-    <ClientEcosystem onOpenQuote={handleOpenQuote} />
-    <ContactSection onOpenQuote={handleOpenQuote} />
+
+    <IntersectionDeferred height="600px">
+      <Suspense fallback={<div className="h-96" />}>
+        <div id="process">
+          <ProcessPage isStandalone={false} />
+        </div>
+      </Suspense>
+    </IntersectionDeferred>
+
+    <IntersectionDeferred height="400px">
+      <Suspense fallback={<div className="h-96" />}>
+        <IndustriesGrid />
+      </Suspense>
+    </IntersectionDeferred>
+
+    <IntersectionDeferred height="500px">
+      <Suspense fallback={<div className="h-96" />}>
+        <HowWeDeliver />
+      </Suspense>
+    </IntersectionDeferred>
+
+    <IntersectionDeferred height="500px">
+      <Suspense fallback={<div className="h-[500px] bg-slate-100 animate-pulse rounded-3xl" />}>
+        <CoverageNetwork onOpenQuote={handleOpenQuote} />
+      </Suspense>
+    </IntersectionDeferred>
+
+    <IntersectionDeferred height="300px">
+      <Suspense fallback={<div className="h-96" />}>
+        <StatisticsSection />
+      </Suspense>
+    </IntersectionDeferred>
+
+    <IntersectionDeferred height="400px">
+      <Suspense fallback={<div className="h-96" />}>
+        <WhyUs />
+      </Suspense>
+    </IntersectionDeferred>
+
+    <IntersectionDeferred height="300px">
+      <Suspense fallback={<div className="h-96" />}>
+        <ClientEcosystem onOpenQuote={handleOpenQuote} />
+      </Suspense>
+    </IntersectionDeferred>
+
+    <IntersectionDeferred height="400px">
+      <Suspense fallback={<div className="h-96" />}>
+        <ContactSection onOpenQuote={handleOpenQuote} />
+      </Suspense>
+    </IntersectionDeferred>
   </main>
 );
 
@@ -50,7 +124,7 @@ export function App() {
     // Show Preloader with brand logo on initial page load
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1800);
+    }, 600);
     return () => clearTimeout(timer);
   }, []);
 
@@ -68,9 +142,9 @@ export function App() {
       {/* Routes */}
       <Routes>
         <Route path="/" element={<HomePage handleOpenQuote={handleOpenQuote} />} />
-        <Route path="/about" element={<AboutUsPage />} />
-        <Route path="/services" element={<ServicesPage />} />
-        <Route path="/process" element={<ProcessPage />} />
+        <Route path="/about" element={<Suspense fallback={<div className="h-screen flex items-center justify-center">Loading...</div>}><AboutUsPage /></Suspense>} />
+        <Route path="/services" element={<Suspense fallback={<div className="h-screen flex items-center justify-center">Loading...</div>}><ServicesPage /></Suspense>} />
+        <Route path="/process" element={<Suspense fallback={<div className="h-screen flex items-center justify-center">Loading...</div>}><ProcessPage /></Suspense>} />
       </Routes>
 
       {/* Footer */}

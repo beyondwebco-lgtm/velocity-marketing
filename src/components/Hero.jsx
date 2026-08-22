@@ -27,6 +27,17 @@ const staggerItem = {
 };
 
 export const Hero = ({ onOpenQuote }) => {
+  const [videoSrc, setVideoSrc] = React.useState('');
+
+  React.useEffect(() => {
+    // Defer loading and play of the heavy mp4 video to avoid blocking startup main-thread
+    const timer = setTimeout(() => {
+      setVideoSrc('/assets/Company_Logo.webp'); // Fallback / Poster or actual MP4
+      setVideoSrc('/assets/Company_Logo.mp4');
+    }, 2500);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <section
       data-theme="light"
@@ -152,7 +163,7 @@ export const Hero = ({ onOpenQuote }) => {
               playsInline 
               className="w-full h-auto object-cover"
             >
-              <source src="/assets/Company_Logo.mp4" type="video/mp4" />
+              {videoSrc && <source src={videoSrc} type="video/mp4" />}
               Your browser does not support the video tag.
             </video>
           </motion.div>
