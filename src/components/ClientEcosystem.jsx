@@ -18,9 +18,9 @@ export const ClientEcosystem = () => {
       {CLIENT_PARTNERS.map((client, idx) => (
         <div
           key={idx}
-          className="flex items-center space-x-4 bg-slate-50 border border-slate-200/80 rounded-2xl p-4 min-w-[280px] shadow-sm hover:shadow-md hover:border-blue-400 hover:bg-white transition-all duration-300 group flex-shrink-0"
+          className="flex items-center space-x-6 bg-slate-50 border border-slate-200/80 rounded-2xl p-6 min-w-[340px] shadow-sm hover:shadow-md hover:border-blue-400 hover:bg-white transition-all duration-300 group flex-shrink-0"
         >
-          <div className="w-16 h-12 flex items-center justify-center bg-white rounded-xl p-1.5 border border-slate-100 flex-shrink-0 shadow-sm">
+          <div className="w-24 h-16 flex items-center justify-center bg-white rounded-xl p-2.5 border border-slate-100 flex-shrink-0 shadow-sm">
             <img 
               src={clientLogos[client.name]} 
               alt={`${client.name} logo`} 
@@ -28,10 +28,10 @@ export const ClientEcosystem = () => {
             />
           </div>
           <div className="text-left">
-            <h4 className="font-extrabold text-slate-900 text-sm tracking-tight leading-snug group-hover:text-blue-700 transition-colors">
+            <h4 className="font-extrabold text-slate-900 text-base tracking-tight leading-snug group-hover:text-blue-700 transition-colors">
               {client.name}
             </h4>
-            <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400 group-hover:text-blue-500 transition-colors block mt-0.5">
+            <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 group-hover:text-blue-500 transition-colors block mt-0.5">
               {client.category}
             </span>
           </div>
@@ -41,11 +41,11 @@ export const ClientEcosystem = () => {
   );
 
   return (
-    <MotionSection id="clients" dataTheme="light" className="py-20 relative overflow-hidden bg-white border-y border-slate-200">
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+    <MotionSection id="clients" dataTheme="light" className="py-20 relative overflow-hidden bg-white border-y border-slate-200 w-full">
+      
+      {/* Section Header - remains centered within max-w-7xl */}
+      <div className="max-w-7xl mx-auto px-6 relative z-10 mb-12">
+        <div className="text-center max-w-3xl mx-auto space-y-4">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
             {CLIENT_SECTION.heading}
           </h2>
@@ -53,23 +53,23 @@ export const ClientEcosystem = () => {
             {CLIENT_SECTION.description}
           </p>
         </div>
-
-        {/* Marquee Wrapper */}
-        <div className="w-full overflow-hidden flex relative select-none">
-          {/* Gradient Overlay left */}
-          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none" />
-          
-          {/* Gradient Overlay right */}
-          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none" />
-
-          {/* We render two identical tracks side-by-side for a perfectly infinite scrolling marquee */}
-          <div className="flex space-x-8 flex-shrink-0">
-            {renderLogoTrack()}
-            {renderLogoTrack()}
-          </div>
-        </div>
-
       </div>
+
+      {/* Marquee Wrapper - outside max-w-7xl for full-screen edge-to-edge scroll */}
+      <div className="w-full overflow-hidden flex relative select-none">
+        {/* Gradient Overlay left */}
+        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none" />
+        
+        {/* Gradient Overlay right */}
+        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none" />
+
+        {/* Seamless Infinite Loop Container */}
+        <div className="flex flex-row flex-nowrap space-x-0">
+          {renderLogoTrack()}
+          {renderLogoTrack()}
+        </div>
+      </div>
+
     </MotionSection>
   );
 };
