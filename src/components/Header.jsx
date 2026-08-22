@@ -71,8 +71,10 @@ export const Header = ({ onOpenQuote }) => {
         <a href="#" className="flex items-center space-x-3 group">
           <div className="w-11 h-11 rounded-xl bg-white p-1 shadow-md shadow-slate-900/10 border border-slate-200 flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform duration-300">
             <img
-              src="/assets/Logo.jpeg"
+              src="/assets/Logo.webp"
               alt="Velocity Marketing"
+              width="44"
+              height="44"
               className="w-full h-full object-contain"
             />
           </div>

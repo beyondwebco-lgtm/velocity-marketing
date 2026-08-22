@@ -8,9 +8,9 @@ export const ClientEcosystem = () => {
     "Zepto": "/assets/clients/zepto-logo.svg",
     "Blinkit": "/assets/clients/blinkit-logo.svg",
     "Ratnadeep Retail": "/assets/clients/ratnadeep-retail-logo.svg",
-    "Narayana Schools": "/assets/clients/narayana-schools.png",
-    "DMart": "/assets/clients/dmart.png",
-    "Sun Pharma": "/assets/clients/sun-pharma.png"
+    "Narayana Schools": "/assets/clients/narayana-schools.webp",
+    "DMart": "/assets/clients/dmart.webp",
+    "Sun Pharma": "/assets/clients/sun-pharma.webp"
   };
 
   const renderLogoTrack = () => (
@@ -24,6 +24,9 @@ export const ClientEcosystem = () => {
             <img 
               src={clientLogos[client.name]} 
               alt={`${client.name} logo`} 
+              width="96"
+              height="64"
+              loading="lazy"
               className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300"
             />
           </div>

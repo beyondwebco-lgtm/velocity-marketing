@@ -116,7 +116,7 @@ export const AboutUsPage = ({ isStandalone = true }) => {
           {LEADERSHIP_TEAM.map((leader, index) => (
             <div key={index} className="flex flex-col md:flex-row gap-8 items-start bg-white rounded-3xl p-8 shadow-xl shadow-slate-900/5 border border-slate-200 hover:border-blue-200 transition-colors duration-300">
               <div className="w-48 h-48 md:w-56 md:h-64 flex-shrink-0 rounded-2xl overflow-hidden shadow-lg border-4 border-slate-50 self-center md:self-start bg-slate-50">
-                <img src={leader.image} alt={leader.name} className="w-full h-full object-contain" />
+                <img src={leader.image} alt={leader.name} width="224" height="256" loading="lazy" className="w-full h-full object-contain" />
               </div>
               <div className="flex-1 space-y-4">
                 <div>

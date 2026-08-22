@@ -113,6 +113,9 @@ export const Services = ({ onOpenQuote }) => {
                       <img 
                         src={activeServiceGroup.image} 
                         alt={activeServiceGroup.title} 
+                        width="400"
+                        height="300"
+                        loading="lazy"
                         className="w-full h-full object-cover" 
                       />
                     </div>

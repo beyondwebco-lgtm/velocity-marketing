@@ -40,7 +40,7 @@ export const LEADERSHIP_TEAM = [
   {
     name: "Mr. Sai Prasad",
     role: "Head of Business",
-    image: "/assets/leader-revathi.png",
+    image: "/assets/leader-revathi.webp",
     bio: [
       "Mr. Sai Prasad is the Head of Business at Velocity Marketing, bringing over 13 years of extensive experience in the FMCG, retail, and consumer products industry. He holds an MBA in Marketing from GITAM University, Visakhapatnam, which laid the foundation for his expertise in marketing, sales, and business management. Since completing his MBA, he has built a proven track record of driving business growth, strengthening market presence, and delivering successful go-to-market strategies across leading consumer brands.",
       "Further strengthening his strategic leadership capabilities, Mr. Prasad is an Alumnus of the prestigious Indian School of Business (ISB), Hyderabad, where he successfully completed the Business Strategy Programme. This executive education has enhanced his expertise in strategic planning, competitive advantage, business transformation, and sustainable growth.",
@@ -52,7 +52,7 @@ export const LEADERSHIP_TEAM = [
   {
     name: "Revathi",
     role: "Head of Projects",
-    image: "/assets/leader-sai-prasad.jpg",
+    image: "/assets/leader-sai-prasad.webp",
     bio: [
       "Revathi, a Technology Graduate, is the key architect behind Velocity Marketing's digital vision and operational excellence. She plays a pivotal role in building the company's technology-driven ecosystem, ensuring that innovation, efficiency, and customer experience remain at the core of every solution.",
       "With a strong analytical mindset and a passion for technology, Revathi has been instrumental in shaping Velocity Marketing's digital infrastructure, streamlining internal processes, and supporting scalable business growth. Her focus on integrating technology with marketing operations enables the company to deliver seamless execution, real-time reporting, data-driven insights, and enhanced client experiences.",
@@ -113,7 +113,7 @@ export const SERVICES = [
     title: "Brand Activation",
     shortDesc: "Transform brands into memorable experiences through innovative, high-impact activation campaigns.",
     icon: "Sparkles",
-    image: "/assets/services/Brand Activations.png",
+    image: "/assets/services/Brand Activations.webp",
     items: [
       "Product Sampling",
       "Product Demonstrations",
@@ -133,7 +133,7 @@ export const SERVICES = [
     title: "Retail Marketing",
     shortDesc: "Strengthen retail presence through consistent in-store execution and visual merchandising.",
     icon: "ShoppingBag",
-    image: "/assets/services/Retail marketing.png",
+    image: "/assets/services/Retail marketing.webp",
     items: [
       "Merchandising",
       "Shelf Audits",
@@ -151,7 +151,7 @@ export const SERVICES = [
     title: "Outdoor Activations",
     shortDesc: "Maximize brand visibility and direct customer engagement in busy public locations.",
     icon: "MapPin",
-    image: "/assets/services/outdoor activation.png",
+    image: "/assets/services/outdoor activation.webp",
     items: [
       "Roadshows",
       "Van Campaigns",
@@ -168,7 +168,7 @@ export const SERVICES = [
     title: "Events & Promotions",
     shortDesc: "Plan and execute corporate meetings, dealer meets, distributor meets, and trade shows.",
     icon: "Calendar",
-    image: "/assets/services/Events & Promotions.png",
+    image: "/assets/services/Events & Promotions.webp",
     items: [
       "Dealer Meets",
       "Distributor Meets",
@@ -184,7 +184,7 @@ export const SERVICES = [
     title: "Digital Support",
     shortDesc: "Implement tech-enabled field reporting, QR campaigns, and WhatsApp marketing support.",
     icon: "Smartphone",
-    image: "/assets/services/Digital Support.png",
+    image: "/assets/services/Digital Support.webp",
     items: [
       "QR Code Campaigns",
       "Lead Generation Campaigns",
@@ -199,7 +199,7 @@ export const SERVICES = [
     title: "Branding & Fabrication",
     shortDesc: "Custom design and build kiosks, exhibition stalls, boards, and display units.",
     icon: "PenTool",
-    image: "/assets/services/Branding & Fabrication.png",
+    image: "/assets/services/Branding & Fabrication.webp",
     items: [
       "Kiosks",
       "Exhibition Stalls",
@@ -214,7 +214,7 @@ export const SERVICES = [
     title: "Audit & Analytics",
     shortDesc: "Conduct retail audits, mystery shopping, GPS tracking, and campaign ROI measurement.",
     icon: "BarChart3",
-    image: "/assets/services/Audit & Analytics.png",
+    image: "/assets/services/Audit & Analytics.webp",
     items: [
       "Retail Audits",
       "Mystery Shopping",
@@ -232,7 +232,7 @@ export const SERVICES = [
     title: "Logistics & Operations",
     shortDesc: "Manage material warehousing, distribution, permissions, and compliance across India.",
     icon: "Truck",
-    image: "/assets/services/Logistics & Operations.png",
+    image: "/assets/services/Logistics & Operations.webp",
     items: [
       "Campaign Planning",
       "PAN India Execution",

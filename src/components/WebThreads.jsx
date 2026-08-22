@@ -152,153 +152,165 @@ const WebThreads = ({
     const container = containerRef.current;
     if (!container) return;
 
-    const renderer = new Renderer({
-      webgl: 2,
-      alpha: true,
-      premultipliedAlpha: true,
-      antialias: false,
-      dpr: Math.min(window.devicePixelRatio || 1, 2)
-    });
-
-    const gl = renderer.gl;
-    gl.clearColor(0, 0, 0, 0);
-    const canvas = gl.canvas;
-    canvas.style.width = '100%';
-    canvas.style.height = '100%';
-    canvas.style.display = 'block';
-    container.appendChild(canvas);
-
-    const geometry = new Triangle(gl);
-    const program = new Program(gl, {
-      vertex,
-      fragment,
-      uniforms: {
-        iTime: { value: 0 },
-        iResolution: { value: new Float32Array([1, 1]) },
-        uSpeed: { value: 0.2 },
-        uThreadCount: { value: 6 },
-        uFrequency: { value: 5.0 },
-        uSpread: { value: 0.18 },
-        uTaper: { value: 1.0 },
-        uPosition: { value: 0.5 },
-        uFanMode: { value: 0 },
-        uGlow: { value: 0.02 },
-        uFalloff: { value: 0.6 },
-        uThickness: { value: 1.1 },
-        uBrightness: { value: 0.6 },
-        uOpacity: { value: 1.0 },
-        uMirror: { value: 1.0 },
-        uShimmer: { value: 0.0 },
-        uGrain: { value: 1.0 },
-        uGrainIntensity: { value: 0.05 },
-        uColor1: { value: new Float32Array([1, 1, 1]) },
-        uColor2: { value: new Float32Array([1, 1, 1]) },
-        uColor3: { value: new Float32Array([1, 1, 1]) },
-        uMouse: { value: new Float32Array([0.5, 0.5]) },
-        uMouseStrength: { value: 0.3 },
-        uEnableMouse: { value: 1.0 },
-        uMouseActive: { value: 0 }
-      }
-    });
-
-    const mesh = new Mesh(gl, { geometry, program });
-    ctxMap.set(container, { renderer, program, mesh });
-
-    const setSize = () => {
-      const rect = container.getBoundingClientRect();
-      const w = Math.max(1, Math.floor(rect.width));
-      const h = Math.max(1, Math.floor(rect.height));
-      renderer.setSize(w, h);
-      const res = program.uniforms.iResolution.value;
-      res[0] = gl.drawingBufferWidth;
-      res[1] = gl.drawingBufferHeight;
-      renderer.render({ scene: mesh });
-    };
-
-    const ro = new ResizeObserver(setSize);
-    ro.observe(container);
-    setSize();
-
-    const currentMouse = [0.5, 0.5];
-    const targetMouse = [0.5, 0.5];
-    let currentActive = 0;
-    let targetActive = 0;
-
-    const onMouseMove = e => {
-      const rect = canvas.getBoundingClientRect();
-      targetMouse[0] = (e.clientX - rect.left) / rect.width;
-      targetMouse[1] = 1.0 - (e.clientY - rect.top) / rect.height;
-      targetActive = 1;
-    };
-    const onMouseEnter = () => {
-      targetActive = 1;
-    };
-    const onMouseLeave = () => {
-      targetActive = 0;
-    };
-    canvas.addEventListener('mousemove', onMouseMove);
-    canvas.addEventListener('mouseenter', onMouseEnter);
-    canvas.addEventListener('mouseleave', onMouseLeave);
-
+    let renderer, gl, canvas, geometry, program, mesh, ro, io;
+    let onMouseMove, onMouseEnter, onMouseLeave, onVisibility;
     let raf = 0;
     let isVisible = true;
     let isPageVisible = !document.hidden;
-    const t0 = performance.now();
+    let isInitialized = false;
 
-    const loop = t => {
-      program.uniforms.iTime.value = (t - t0) * 0.001;
-      currentMouse[0] += 0.05 * (targetMouse[0] - currentMouse[0]);
-      currentMouse[1] += 0.05 * (targetMouse[1] - currentMouse[1]);
-      currentActive += 0.05 * (targetActive - currentActive);
-      program.uniforms.uMouse.value[0] = currentMouse[0];
-      program.uniforms.uMouse.value[1] = currentMouse[1];
-      program.uniforms.uMouseActive.value = currentActive;
-      program.uniforms.uEnableMouse.value = mouseRef.current.enabled ? 1.0 : 0.0;
-      program.uniforms.uMouseStrength.value = mouseRef.current.strength;
-      renderer.render({ scene: mesh });
-      raf = requestAnimationFrame(loop);
-    };
+    let initTimeout = setTimeout(() => {
+      renderer = new Renderer({
+        webgl: 2,
+        alpha: true,
+        premultipliedAlpha: true,
+        antialias: false,
+        dpr: Math.min(window.devicePixelRatio || 1, 2)
+      });
 
-    const tryStart = () => {
-      if (isVisible && isPageVisible && raf === 0) raf = requestAnimationFrame(loop);
-    };
-    const tryStop = () => {
-      if (raf !== 0) {
-        cancelAnimationFrame(raf);
-        raf = 0;
-      }
-    };
+      gl = renderer.gl;
+      gl.clearColor(0, 0, 0, 0);
+      canvas = gl.canvas;
+      canvas.style.width = '100%';
+      canvas.style.height = '100%';
+      canvas.style.display = 'block';
+      container.appendChild(canvas);
 
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        isVisible = entry.isIntersecting;
-        isVisible ? tryStart() : tryStop();
-      },
-      { threshold: 0 }
-    );
-    io.observe(container);
+      geometry = new Triangle(gl);
+      program = new Program(gl, {
+        vertex,
+        fragment,
+        uniforms: {
+          iTime: { value: 0 },
+          iResolution: { value: new Float32Array([1, 1]) },
+          uSpeed: { value: speed },
+          uThreadCount: { value: Math.round(threadCount) },
+          uFrequency: { value: frequency },
+          uSpread: { value: spread },
+          uTaper: { value: taper },
+          uPosition: { value: position },
+          uFanMode: { value: FAN_MODE[fanMode] ?? 0 },
+          uGlow: { value: glow },
+          uFalloff: { value: falloff },
+          uThickness: { value: thickness },
+          uBrightness: { value: brightness },
+          uOpacity: { value: opacity },
+          uMirror: { value: mirror ? 1.0 : 0.0 },
+          uShimmer: { value: shimmer ? 1.0 : 0.0 },
+          uGrain: { value: grain ? 1.0 : 0.0 },
+          uGrainIntensity: { value: grainIntensity },
+          uColor1: { value: new Float32Array(hexToRgb(color1)) },
+          uColor2: { value: new Float32Array(hexToRgb(color2)) },
+          uColor3: { value: new Float32Array(hexToRgb(color3)) },
+          uMouse: { value: new Float32Array([0.5, 0.5]) },
+          uMouseStrength: { value: mouseStrength },
+          uEnableMouse: { value: mouseInteraction ? 1.0 : 0.0 },
+          uMouseActive: { value: 0 }
+        }
+      });
 
-    const onVisibility = () => {
-      isPageVisible = !document.hidden;
-      isPageVisible ? tryStart() : tryStop();
-    };
-    document.addEventListener('visibilitychange', onVisibility);
+      mesh = new Mesh(gl, { geometry, program });
+      ctxMap.set(container, { renderer, program, mesh });
+      isInitialized = true;
 
-    tryStart();
+      const setSize = () => {
+        const rect = container.getBoundingClientRect();
+        const w = Math.max(1, Math.floor(rect.width));
+        const h = Math.max(1, Math.floor(rect.height));
+        renderer.setSize(w, h);
+        const res = program.uniforms.iResolution.value;
+        res[0] = gl.drawingBufferWidth;
+        res[1] = gl.drawingBufferHeight;
+        renderer.render({ scene: mesh });
+      };
+
+      ro = new ResizeObserver(setSize);
+      ro.observe(container);
+      setSize();
+
+      const currentMouse = [0.5, 0.5];
+      const targetMouse = [0.5, 0.5];
+      let currentActive = 0;
+      let targetActive = 0;
+
+      onMouseMove = e => {
+        const rect = canvas.getBoundingClientRect();
+        targetMouse[0] = (e.clientX - rect.left) / rect.width;
+        targetMouse[1] = 1.0 - (e.clientY - rect.top) / rect.height;
+        targetActive = 1;
+      };
+      onMouseEnter = () => {
+        targetActive = 1;
+      };
+      onMouseLeave = () => {
+        targetActive = 0;
+      };
+      canvas.addEventListener('mousemove', onMouseMove);
+      canvas.addEventListener('mouseenter', onMouseEnter);
+      canvas.addEventListener('mouseleave', onMouseLeave);
+
+      const t0 = performance.now();
+
+      const loop = t => {
+        program.uniforms.iTime.value = (t - t0) * 0.001;
+        currentMouse[0] += 0.05 * (targetMouse[0] - currentMouse[0]);
+        currentMouse[1] += 0.05 * (targetMouse[1] - currentMouse[1]);
+        currentActive += 0.05 * (targetActive - currentActive);
+        program.uniforms.uMouse.value[0] = currentMouse[0];
+        program.uniforms.uMouse.value[1] = currentMouse[1];
+        program.uniforms.uMouseActive.value = currentActive;
+        program.uniforms.uEnableMouse.value = mouseRef.current.enabled ? 1.0 : 0.0;
+        program.uniforms.uMouseStrength.value = mouseRef.current.strength;
+        renderer.render({ scene: mesh });
+        raf = requestAnimationFrame(loop);
+      };
+
+      const tryStart = () => {
+        if (isVisible && isPageVisible && raf === 0) raf = requestAnimationFrame(loop);
+      };
+      const tryStop = () => {
+        if (raf !== 0) {
+          cancelAnimationFrame(raf);
+          raf = 0;
+        }
+      };
+
+      io = new IntersectionObserver(
+        ([entry]) => {
+          isVisible = entry.isIntersecting;
+          isVisible ? tryStart() : tryStop();
+        },
+        { threshold: 0 }
+      );
+      io.observe(container);
+
+      onVisibility = () => {
+        isPageVisible = !document.hidden;
+        isPageVisible ? tryStart() : tryStop();
+      };
+      document.addEventListener('visibilitychange', onVisibility);
+
+      tryStart();
+    }, 300);
 
     return () => {
-      tryStop();
-      ro.disconnect();
-      io.disconnect();
-      document.removeEventListener('visibilitychange', onVisibility);
-      canvas.removeEventListener('mousemove', onMouseMove);
-      canvas.removeEventListener('mouseenter', onMouseEnter);
-      canvas.removeEventListener('mouseleave', onMouseLeave);
-      ctxMap.delete(container);
-      try {
-        container.removeChild(canvas);
-      } catch {}
-      gl.getExtension('WEBGL_lose_context')?.loseContext();
+      clearTimeout(initTimeout);
+      if (isInitialized) {
+        if (raf !== 0) cancelAnimationFrame(raf);
+        if (ro) ro.disconnect();
+        if (io) io.disconnect();
+        if (onVisibility) document.removeEventListener('visibilitychange', onVisibility);
+        if (canvas) {
+          if (onMouseMove) canvas.removeEventListener('mousemove', onMouseMove);
+          if (onMouseEnter) canvas.removeEventListener('mouseenter', onMouseEnter);
+          if (onMouseLeave) canvas.removeEventListener('mouseleave', onMouseLeave);
+        }
+        ctxMap.delete(container);
+        try {
+          if (canvas) container.removeChild(canvas);
+        } catch {}
+        if (gl) gl.getExtension('WEBGL_lose_context')?.loseContext();
+      }
     };
   }, []);
 
