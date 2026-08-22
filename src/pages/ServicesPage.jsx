@@ -1,72 +1,102 @@
-import React from 'react';
-import { ChevronRight, ArrowRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { Search, ArrowRight, ShieldCheck, Check } from 'lucide-react';
 import { DETAILED_SERVICES } from '../data/detailedData';
 import { MotionSection, MotionCard } from '../components/MotionWrapper';
 import { Link } from 'react-router-dom';
 
 export const ServicesPage = ({ isStandalone = true }) => {
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const filteredServices = DETAILED_SERVICES.filter(service =>
+    service.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    service.desc.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
-    <div className={`${isStandalone ? 'pt-24 pb-20 bg-slate-50 min-h-screen' : 'py-20 bg-slate-50'}`}>
-      <div className="max-w-5xl mx-auto px-6">
+    <div className={`${isStandalone ? 'pt-28 pb-20 bg-slate-50 min-h-screen' : 'py-20 bg-slate-50'}`}>
+      <div className="max-w-7xl mx-auto px-6">
         
         {/* Header */}
-        <div className="text-center mb-16 space-y-4">
-          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-100 border border-blue-200 text-sm font-bold text-blue-800 tracking-wider">
+        <div className="text-center mb-16 space-y-6">
+          <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-blue-100 border border-blue-200 text-xs font-bold text-blue-800 tracking-widest uppercase">
+            <ShieldCheck className="w-4 h-4 text-blue-700" />
             <span>OUR COMPREHENSIVE SERVICES</span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
+          <h1 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight">
             What We Deliver
           </h1>
-          <p className="text-slate-600 max-w-2xl mx-auto text-lg leading-relaxed">
-            We offer a comprehensive range of marketing execution services designed to support every stage of the customer journey.
+          <p className="text-slate-600 max-w-4xl mx-auto text-base sm:text-lg leading-relaxed font-medium">
+            Velocity Marketing is a leading BTL (Below-the-Line) marketing agency delivering innovative, result-driven on-ground brand activation solutions across India. We specialize in creating impactful consumer experiences through product sampling, retail branding, outdoor advertising, transit branding, rural marketing, corporate activations, and promotional campaigns. With a skilled execution team and nationwide network, we help brands increase visibility, engage target audiences, generate quality leads, and drive measurable business growth through customized marketing solutions.
           </p>
         </div>
 
-        {/* Services List */}
-        <div className="space-y-12">
-          {DETAILED_SERVICES.map((service, index) => (
-            <MotionSection key={index} className="scroll-mt-32" id={`service-${service.id}`}>
-              <div className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-900/5 border border-slate-200">
-                <div className="flex items-center space-x-4 mb-6">
-                  <span className="text-4xl md:text-5xl font-extrabold text-blue-100">{service.id}</span>
-                  <h2 className="text-2xl md:text-3xl font-bold text-slate-900">{service.title}</h2>
-                </div>
-                
-                <p className="text-slate-700 text-lg mb-8 leading-relaxed font-medium">
-                  {service.intro}
-                </p>
-
-                {service.image && (
-                  <div className="mb-8 rounded-2xl overflow-hidden border border-slate-200 shadow-sm h-64 md:h-80 lg:h-96 w-full">
-                    <img src={service.image} alt={service.title} className="w-full h-full object-cover" />
-                  </div>
-                )}
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {service.subItems.map((sub, subIdx) => (
-                    <MotionCard key={subIdx}>
-                      <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 h-full hover:border-blue-200 hover:shadow-md transition-all duration-300">
-                        <h3 className="font-bold text-slate-900 mb-3 flex items-center space-x-2">
-                          <ChevronRight className="w-5 h-5 text-blue-600 flex-shrink-0" />
-                          <span>{sub.title}</span>
-                        </h3>
-                        <p className="text-slate-600 text-sm leading-relaxed pl-7">
-                          {sub.desc}
-                        </p>
-                      </div>
-                    </MotionCard>
-                  ))}
-                </div>
-              </div>
-            </MotionSection>
-          ))}
+        {/* Search Bar */}
+        <div className="max-w-md mx-auto mb-12 relative">
+          <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+            <Search className="w-5 h-5 text-slate-400" />
+          </div>
+          <input
+            type="text"
+            placeholder="Search services (e.g. Sampling, Van, Retail)..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full pl-12 pr-4 py-3.5 bg-white border border-slate-200 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 font-medium text-slate-800 placeholder:text-slate-400"
+          />
         </div>
+
+        {/* Services Grid */}
+        {filteredServices.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredServices.map((service, index) => (
+              <MotionCard key={service.id}>
+                <div className="bg-white rounded-3xl overflow-hidden border border-slate-200 hover:border-blue-300 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col h-full group">
+                  
+                  {/* Service Image */}
+                  {service.image && (
+                    <div className="h-56 w-full overflow-hidden relative bg-slate-100">
+                      <img 
+                        src={service.image} 
+                        alt={service.title} 
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                      />
+                      <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full border border-slate-200 text-xs font-mono font-bold text-blue-700 shadow-sm">
+                        {service.id}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Card content */}
+                  <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between space-y-4">
+                    <div className="space-y-3">
+                      <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 group-hover:text-blue-700 transition-colors leading-tight">
+                        {service.title}
+                      </h3>
+                      <p className="text-slate-600 text-sm leading-relaxed font-medium">
+                        {service.desc}
+                      </p>
+                    </div>
+
+                    <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-mono font-bold text-slate-400">
+                      <span className="flex items-center text-emerald-600">
+                        <Check className="w-4 h-4 mr-1 flex-shrink-0" /> PAN India Execution
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </MotionCard>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-12 bg-white rounded-3xl border border-dashed border-slate-300">
+            <p className="text-slate-500 font-medium">No services found matching "{searchQuery}"</p>
+          </div>
+        )}
 
         {/* Bottom CTA */}
         <MotionSection className="mt-20">
-          <div className="bg-blue-600 rounded-3xl p-12 text-center shadow-xl shadow-blue-900/20">
-            <h2 className="text-3xl font-bold text-white mb-6">Ready to Accelerate Your Brand?</h2>
-            <p className="text-blue-100 mb-8 max-w-2xl mx-auto text-lg">
+          <div className="bg-blue-600 rounded-3xl p-8 sm:p-12 text-center shadow-xl shadow-blue-900/20 text-white">
+            <h2 className="text-3xl font-black mb-6">Ready to Accelerate Your Brand?</h2>
+            <p className="text-blue-100 mb-8 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">
               Whether you're planning a product launch, retail promotion, or large-scale merchandising project, we are ready to help you execute with confidence.
             </p>
             <Link to="/#contact" className="inline-flex items-center space-x-2 px-8 py-4 bg-white text-blue-900 rounded-full font-bold hover:bg-slate-100 transition-all duration-300 shadow-lg group">

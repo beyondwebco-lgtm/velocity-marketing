@@ -19,18 +19,18 @@ export const COMPANY_INFO = {
   
   aboutLabel: "ABOUT VELOCITY MARKETING",
   aboutHeading: "Company Overview",
-  aboutContent: "Velocity Marketing is a leading integrated sales and marketing solutions company specializing in delivering high-impact, on-ground execution that drives measurable business growth. We partner with brands to strengthen market presence, enhance customer engagement, and improve sales performance through data-driven execution and experienced field teams.\n\nOur expertise includes Below-the-Line (BTL) Marketing, Retail Execution, Brand Activations, Merchandising, Field Marketing, In-Store Promotions, Shopper Marketing, Sales Force Management, and Business Support Services. With a strong network of trained promoters and supervisors, we ensure seamless execution across modern trade, general trade, and emerging retail channels.\n\nServing industries such as FMCG, E-commerce, Quick Commerce, Consumer Electronics, Telecom, Retail, Lifestyle, Healthcare, and Financial Services, we help businesses launch products, improve retail visibility, increase customer acquisition, and accelerate revenue growth.\n\nAt Velocity Marketing, we combine strategic planning, technology-enabled reporting, GPS-based field tracking, and operational excellence to deliver transparent, reliable, and result-oriented marketing solutions that create lasting value for our clients.",
+  aboutContent: "Velocity Marketing Agency is the marketing division of Velocity Business Solutions Private Limited, established in Hyderabad, India in late 2025. The agency is focused on helping businesses build their brands, strengthen their digital presence, reach the right customers, and generate sustainable business growth.\n\nOur purpose is to provide practical, result-oriented marketing solutions for startups, small and medium businesses, established brands, and organizations looking to expand their market presence.",
   aboutHighlight: "Your End-to-End Marketing Execution Partner",
   aboutExecution: "Marketing success depends not only on strategy but also on flawless execution. Velocity Marketing transforms marketing plans into real-world experiences by managing every stage of campaign execution—from planning and staffing to implementation, monitoring, and performance reporting.\n\nVelocity Marketing provides businesses with a single reliable partner capable of managing promotional activities across multiple cities, retail formats, and customer touchpoints while maintaining consistent quality and brand standards.",
   aboutFlow: "Right Audience → Right Place → Right Time",
-
+  
   vision: "To become India's most trusted and innovative marketing execution partner, delivering impactful retail and consumer engagement solutions that empower brands to achieve sustainable growth and market leadership.",
   mission: "Our mission is to provide end-to-end marketing and sales execution services that help brands reach the right customers at the right time.\n\nThrough operational excellence, technology-driven reporting, skilled manpower, and nationwide coverage, we aim to create measurable value for every client while maintaining the highest standards of quality, transparency, and professionalism.",
 
   phone: "+91 98491 41943",
   email: "hello@velocitymarketing.in",
-  address: "Velocity Marketing, 12th floor, Cross Street 1, Kondapur, Whitefields, Gachibowli, Hyderabad, Telangana 500084",
-  mapLink: "https://maps.app.goo.gl/93JeKg64Z6M2t9aa9",
+  address: "H. No. 5/497 Near Hitec City, Kondapur, Hyderabad, Telangana 500085",
+  mapLink: "https://maps.app.goo.gl/D9v8wcQZhbNSv2jw6",
   
   leadershipHeading: "Leadership Driven by Execution",
   leadershipDescription: "Velocity Marketing is led by experienced professionals with expertise across sales, marketing, retail operations, business development, and brand execution.",
