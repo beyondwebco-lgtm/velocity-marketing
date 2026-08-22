@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { SERVICES, SERVICES_SECTION } from '../data/contentData';
 import { Sparkles, ShoppingBag, ShieldCheck, Users, ArrowUpRight, Check, ChevronRight, MapPin, Calendar, Smartphone, PenTool, BarChart3, Truck } from 'lucide-react';
 import { MotionSection, MotionGrid, MotionCard } from './MotionWrapper';
-import { motion, AnimatePresence } from 'framer-motion';
+// Framer Motion removed for performance optimization
 
 const iconMap = {
   Sparkles: Sparkles,
@@ -72,17 +72,12 @@ export const Services = ({ onOpenQuote }) => {
           })}
         </div>
 
-          {/* Dynamic Deep-Dive Grid with AnimatePresence */}
+          {/* Dynamic Deep-Dive Grid with CSS transitions */}
           <div className="w-full">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeServiceGroup.id}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="bg-slate-50 rounded-3xl p-8 border border-slate-200 space-y-8 relative shadow-xl shadow-slate-900/5"
-              >
+            <div
+              key={activeServiceGroup.id}
+              className="bg-slate-50 rounded-3xl p-8 border border-slate-200 space-y-8 relative shadow-xl shadow-slate-900/5 animate-[fadeIn_0.35s_ease-out_forwards]"
+            >
                 {/* Header inside active service */}
                 <div className="flex items-center justify-between border-b border-slate-200 pb-6">
                   <div>
@@ -157,8 +152,7 @@ export const Services = ({ onOpenQuote }) => {
                     Configure Campaign &rarr;
                   </a>
                 </div>
-              </motion.div>
-            </AnimatePresence>
+            </div>
           </div>
       </div>
 
