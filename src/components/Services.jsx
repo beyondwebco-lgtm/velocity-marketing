@@ -147,12 +147,12 @@ export const Services = ({ onOpenQuote }) => {
                     <Check className="w-4 h-4 text-blue-600" />
                     <span>Custom scope? We construct tailored campaign frameworks in under 24 hours.</span>
                   </div>
-                  <button
-                    onClick={onOpenQuote}
+                  <a
+                    href="#contact"
                     className="text-xs font-bold text-blue-700 hover:underline"
                   >
                     Configure Campaign &rarr;
-                  </button>
+                  </a>
                 </div>
               </motion.div>
             </AnimatePresence>

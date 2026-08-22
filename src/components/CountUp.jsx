@@ -49,7 +49,7 @@ export const CountUp = ({ value, duration = 2000 }) => {
           requestAnimationFrame(animate);
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.05 }
     );
 
     if (elementRef.current) {
