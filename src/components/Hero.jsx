@@ -11,8 +11,8 @@ export const Hero = ({ onOpenQuote }) => {
     // Defer loading and play of the heavy mp4 video to avoid blocking startup main-thread
     const timer = setTimeout(() => {
       setVideoSrc('/assets/Company_Logo.webp'); // Fallback / Poster or actual MP4
-      setVideoSrc('/assets/Company_Logo.mp4');
-    }, 2500);
+      setVideoSrc('/assets/Company_Logo.webm');
+    }, 3500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -94,7 +94,7 @@ export const Hero = ({ onOpenQuote }) => {
             </button>
 
             <a
-              href="#services"
+              href="#contact"
               className="px-7 py-4 rounded-full bg-white/80 backdrop-blur-md hover:bg-white text-slate-900 font-bold text-base transition-all duration-300 flex items-center space-x-2 border border-slate-200 shadow-sm hover:shadow-md"
             >
               <Sparkles className="w-4 h-4 text-blue-600" />

@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { COMPANY_INFO, WHY_CHOOSE_US, COVERAGE_SECTION, LEADERSHIP_TEAM } from '../data/contentData';
 import { Target, Lightbulb, Users, CheckCircle2, MapPin } from 'lucide-react';
 import { MotionSection, MotionCard, MotionGrid } from '../components/MotionWrapper';

@@ -165,7 +165,7 @@ const WebThreads = ({
         alpha: true,
         premultipliedAlpha: true,
         antialias: false,
-        dpr: Math.min(window.devicePixelRatio || 1, 2)
+        dpr: 1
       });
 
       gl = renderer.gl;
@@ -291,7 +291,7 @@ const WebThreads = ({
       document.addEventListener('visibilitychange', onVisibility);
 
       tryStart();
-    }, 300);
+    }, 3500);
 
     return () => {
       clearTimeout(initTimeout);

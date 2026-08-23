@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { SOUTH_INDIA_NETWORK, COVERAGE_SECTION } from '../data/contentData';
 import { MapPin, ArrowUpRight, CheckCircle2, Shield } from 'lucide-react';
 import { MotionSection } from './MotionWrapper';
-import { motion, AnimatePresence } from 'framer-motion';
 import { MapContainer, TileLayer, Marker, Popup, Circle } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
