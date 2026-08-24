@@ -58,7 +58,7 @@ export const Header = ({ onOpenQuote }) => {
             <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-600"></span>
           </span>
           <span className="text-blue-700 font-bold uppercase">LIVE FIELD STATUS:</span>
-          <span className="text-slate-800 font-medium">250+ Promoters Active Across Bengaluru, Hyderabad, Chennai & Vizag</span>
+          <span className="text-slate-800 font-medium">250+ Promoters Active Across South India</span>
         </div>
         <div className="flex items-center space-x-6">
           <span className="flex items-center space-x-1 text-slate-700 hover:text-blue-700 font-medium transition-colors cursor-pointer">

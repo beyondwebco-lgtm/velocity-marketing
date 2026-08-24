@@ -3,12 +3,11 @@ import { Routes, Route } from 'react-router-dom';
 import { Preloader } from './components/Preloader';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
-import { Services } from './components/Services';
 import { ProposalModal } from './components/ProposalModal';
 import { Footer } from './components/Footer';
 import { WhatsAppButton } from './components/WhatsAppButton';
 
-// Lazy Loaded Heavy Components & Pages
+const Services = lazy(() => import('./components/Services').then(module => ({ default: module.Services })));
 const AboutUsPage = lazy(() => import('./pages/AboutUsPage').then(module => ({ default: module.AboutUsPage })));
 const ServicesPage = lazy(() => import('./pages/ServicesPage').then(module => ({ default: module.ServicesPage })));
 const ProcessPage = lazy(() => import('./pages/ProcessPage').then(module => ({ default: module.ProcessPage })));
@@ -19,7 +18,6 @@ const IndustriesGrid = lazy(() => import('./components/IndustriesGrid').then(mod
 const HowWeDeliver = lazy(() => import('./components/HowWeDeliver').then(module => ({ default: module.HowWeDeliver })));
 const WhyUs = lazy(() => import('./components/WhyUsAndContact').then(module => ({ default: module.WhyUs })));
 const ContactSection = lazy(() => import('./components/WhyUsAndContact').then(module => ({ default: module.ContactSection })));
-
 // Helper wrapper to defer loading until component is near viewport
 const IntersectionDeferred = ({ children, height = '300px' }) => {
   const [load, setLoad] = useState(false);
@@ -56,7 +54,11 @@ const HomePage = ({ handleOpenQuote }) => (
     </IntersectionDeferred>
 
     <div id="services">
-      <Services />
+      <IntersectionDeferred height="800px">
+        <Suspense fallback={<div className="h-96" />}>
+          <Services onOpenQuote={handleOpenQuote} />
+        </Suspense>
+      </IntersectionDeferred>
       <IntersectionDeferred height="800px">
         <Suspense fallback={<div className="h-96" />}>
           <ServicesPage isStandalone={false} />

@@ -72,17 +72,24 @@
       const loadGA = () => {
         if (gaLoaded) return;
         gaLoaded = true;
-        const script = document.createElement('script');
-        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
-        script.async = true;
-        document.head.appendChild(script);
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-XXXXXXXXXX');
+        const init = () => {
+          const script = document.createElement('script');
+          script.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+          script.async = true;
+          document.head.appendChild(script);
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-XXXXXXXXXX');
+        };
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(init, { timeout: 4000 });
+        } else {
+          setTimeout(init, 500);
+        }
       };
       ['scroll', 'mousemove', 'keydown', 'click', 'touchstart'].forEach(evt => window.addEventListener(evt, loadGA, { once: true, passive: true }));
-      setTimeout(loadGA, 3500);
+      setTimeout(loadGA, 4500);
     </script>
   </head>
   <body class="bg-[#F8FAFC] text-[#0F172A] font-sans antialiased selection:bg-[#2563EB] selection:text-white">

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { ArrowUpRight, CheckCircle2, Sparkles } from 'lucide-react';
 import { CountUp } from './CountUp';
-import WebThreads from './WebThreads';
 import { METRICS, COMPANY_INFO } from '../data/contentData';
+
+const WebThreads = lazy(() => import('./WebThreads'));
 
 export const Hero = ({ onOpenQuote }) => {
   const [videoSrc, setVideoSrc] = React.useState('');
@@ -23,29 +24,31 @@ export const Hero = ({ onOpenQuote }) => {
     >
       {/* ── WebThreads Background Layer ── */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <WebThreads
-          color1="#2563EB"
-          color2="#60A5FA"
-          color3="#DBEAFE"
-          speed={0.15}
-          threadCount={5}
-          frequency={4.0}
-          spread={0.22}
-          taper={1.2}
-          position={0.45}
-          fanMode="center"
-          glow={0.025}
-          falloff={0.55}
-          thickness={1.3}
-          brightness={0.5}
-          opacity={0.35}
-          mirror={true}
-          shimmer={true}
-          grain={true}
-          grainIntensity={0.03}
-          mouseInteraction={true}
-          mouseStrength={0.25}
-        />
+        <Suspense fallback={<div className="w-full h-full bg-slate-50" />}>
+          <WebThreads
+            color1="#2563EB"
+            color2="#60A5FA"
+            color3="#DBEAFE"
+            speed={0.15}
+            threadCount={5}
+            frequency={4.0}
+            spread={0.22}
+            taper={1.2}
+            position={0.45}
+            fanMode="center"
+            glow={0.025}
+            falloff={0.55}
+            thickness={1.3}
+            brightness={0.5}
+            opacity={0.35}
+            mirror={true}
+            shimmer={true}
+            grain={true}
+            grainIntensity={0.03}
+            mouseInteraction={true}
+            mouseStrength={0.25}
+          />
+        </Suspense>
       </div>
 
       {/* ── Ambient Gradient Overlays ── */}

@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 // Custom CountUp Component with IntersectionObserver for Smooth & Clean Increment Animations
 export const CountUp = ({ value, duration = 2000 }) => {
-  const [displayValue, setDisplayValue] = useState(0);
   const elementRef = useRef(null);
   const hasStarted = useRef(false);
 
@@ -39,12 +38,16 @@ export const CountUp = ({ value, duration = 2000 }) => {
         const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
         const currentNum = Math.floor(easeProgress * num);
 
-        setDisplayValue(currentNum);
+        if (elementRef.current) {
+          elementRef.current.textContent = `${prefix}${currentNum.toLocaleString()}${suffix}`;
+        }
 
         if (progress < 1) {
           rafId = requestAnimationFrame(animate);
         } else {
-          setDisplayValue(num);
+          if (elementRef.current) {
+            elementRef.current.textContent = `${prefix}${num.toLocaleString()}${suffix}`;
+          }
         }
       };
 
@@ -71,13 +74,11 @@ export const CountUp = ({ value, duration = 2000 }) => {
       if (rafId) cancelAnimationFrame(rafId);
       observer.disconnect();
     };
-  }, [num, duration]);
+  }, [num, duration, prefix, suffix]);
 
   return (
     <span ref={elementRef} className="inline-block tabular-nums">
-      {prefix}
-      {displayValue.toLocaleString()}
-      {suffix}
+      {prefix}0{suffix}
     </span>
   );
 };

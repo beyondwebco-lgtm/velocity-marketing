@@ -159,7 +159,9 @@ const WebThreads = ({
     let isPageVisible = !document.hidden;
     let isInitialized = false;
 
-    let initTimeout = setTimeout(() => {
+    let initTimeout;
+    
+    const initializeWebGL = () => {
       renderer = new Renderer({
         webgl: 2,
         alpha: true,
@@ -291,10 +293,17 @@ const WebThreads = ({
       document.addEventListener('visibilitychange', onVisibility);
 
       tryStart();
-    }, 3500);
+    };
+
+    if ('requestIdleCallback' in window) {
+      initTimeout = requestIdleCallback(() => initializeWebGL(), { timeout: 3500 });
+    } else {
+      initTimeout = setTimeout(() => initializeWebGL(), 100);
+    }
 
     return () => {
-      clearTimeout(initTimeout);
+      if (window.requestIdleCallback) cancelIdleCallback(initTimeout);
+      else clearTimeout(initTimeout);
       if (isInitialized) {
         if (raf !== 0) cancelAnimationFrame(raf);
         if (ro) ro.disconnect();
