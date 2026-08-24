@@ -1,4 +1,5 @@
 import React, { lazy, Suspense } from 'react';
+import { isBot } from '../utils';
 import { ArrowUpRight, CheckCircle2, Sparkles } from 'lucide-react';
 import { CountUp } from './CountUp';
 import { METRICS, COMPANY_INFO } from '../data/contentData';
@@ -24,7 +25,8 @@ export const Hero = ({ onOpenQuote }) => {
     >
       {/* ── WebThreads Background Layer ── */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <Suspense fallback={<div className="w-full h-full bg-slate-50" />}>
+        {!isBot() && (
+          <Suspense fallback={<div className="w-full h-full bg-slate-50" />}>
           <WebThreads
             color1="#2563EB"
             color2="#60A5FA"
@@ -49,6 +51,7 @@ export const Hero = ({ onOpenQuote }) => {
             mouseStrength={0.25}
           />
         </Suspense>
+        )}
       </div>
 
       {/* ── Ambient Gradient Overlays ── */}
