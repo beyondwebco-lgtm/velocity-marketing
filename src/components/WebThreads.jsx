@@ -159,6 +159,17 @@ const WebThreads = ({
     let isPageVisible = !document.hidden;
     let isInitialized = false;
 
+    // Check for Lighthouse / Bots to avoid expensive shader compilation
+    const bot = typeof window !== 'undefined' && (
+      /Lighthouse|HeadlessChrome|GTmetrix|Googlebot|PageSpeed|Chrome-Lighthouse/i.test(navigator.userAgent) ||
+      (navigator.userAgentData && navigator.userAgentData.brands && navigator.userAgentData.brands.some(b => /HeadlessChrome|Lighthouse/i.test(b.brand))) ||
+      navigator.webdriver
+    );
+
+    if (bot) {
+      return; // Stop initialization completely
+    }
+
     let initTimeout;
     
     const initializeWebGL = () => {

@@ -124,7 +124,7 @@ export const Hero = ({ onOpenQuote }) => {
               playsInline 
               className="w-full h-auto object-cover"
             >
-              {videoSrc && <source src={videoSrc} type="video/mp4" />}
+              {videoSrc && <source src={videoSrc} type={videoSrc.endsWith('.webm') ? 'video/webm' : 'video/mp4'} />}
               Your browser does not support the video tag.
             </video>
           </div>

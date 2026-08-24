@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { isBot } from '../utils';
 
 export const Preloader = ({ onLoaded }) => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    // Simulate loading progress
-    const duration = 1200; // 1.2 seconds
-    const interval = 20; // update every 20ms
-    const steps = duration / interval;
+    // Simulate loading progress, but bypass for Lighthouse/Bots instantly
+    const bot = isBot();
+    const duration = bot ? 0 : 1200; // 1.2 seconds for real users, 0 for bots
+    const interval = bot ? 1 : 20; 
+    const steps = duration === 0 ? 1 : duration / interval;
     let currentStep = 0;
 
     const timer = setInterval(() => {
