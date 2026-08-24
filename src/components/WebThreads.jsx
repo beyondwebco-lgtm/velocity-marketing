@@ -253,8 +253,6 @@ const WebThreads = ({
 
       const t0 = performance.now();
 
-      const isBot = /Lighthouse|HeadlessChrome|GTmetrix|Googlebot|PageSpeed/i.test(navigator.userAgent);
-
       const loop = t => {
         program.uniforms.iTime.value = (t - t0) * 0.001;
         currentMouse[0] += 0.05 * (targetMouse[0] - currentMouse[0]);
@@ -267,21 +265,35 @@ const WebThreads = ({
         program.uniforms.uMouseStrength.value = mouseRef.current.strength;
         renderer.render({ scene: mesh });
         
-        if (!isBot) {
+        if (window.__hasInteracted) {
           raf = requestAnimationFrame(loop);
+        } else {
+          raf = -1; // Marked as static frame rendered
         }
       };
 
       const tryStart = () => {
-        if (isVisible && isPageVisible && raf === 0) {
-          if (isBot) {
-             // Render a single static frame for bots
-             requestAnimationFrame(loop);
-          } else {
-             raf = requestAnimationFrame(loop);
+        if (isVisible && isPageVisible) {
+          if (raf === 0 || raf === -1) {
+            raf = requestAnimationFrame(loop);
           }
         }
       };
+      
+      if (window.__hasInteracted === undefined) {
+        window.__hasInteracted = false;
+        const interactionEvents = ['click', 'touchstart', 'keydown', 'wheel'];
+        const onInteract = () => {
+          window.__hasInteracted = true;
+          interactionEvents.forEach(evt => window.removeEventListener(evt, onInteract));
+          // Dispatch a custom event to wake up animations
+          window.dispatchEvent(new Event('wakeUpWebGL'));
+        };
+        interactionEvents.forEach(evt => window.addEventListener(evt, onInteract, { passive: true }));
+      }
+      
+      window.addEventListener('wakeUpWebGL', tryStart);
+
       const tryStop = () => {
         if (raf !== 0) {
           cancelAnimationFrame(raf);

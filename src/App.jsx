@@ -123,12 +123,13 @@ export function App() {
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
 
   useEffect(() => {
-    // Show Preloader with brand logo on initial page load
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 600);
-    return () => clearTimeout(timer);
+    // Note: The timer is now handled inside Preloader component
+    // We do not set isLoading(false) here immediately.
   }, []);
+
+  const handlePreloaderDone = () => {
+    setIsLoading(false);
+  };
 
   const handleOpenQuote = () => setIsQuoteModalOpen(true);
   const handleCloseQuote = () => setIsQuoteModalOpen(false);
@@ -136,7 +137,7 @@ export function App() {
   return (
     <div className="min-h-screen bg-[#F8FAFC] text-[#0F172A] selection:bg-blue-600 selection:text-white font-sans antialiased">
       {/* Brand Preloader displaying logo during initial site load */}
-      {isLoading && <Preloader />}
+      {isLoading && <Preloader onLoaded={handlePreloaderDone} />}
 
       {/* Global Navigation Header */}
       <Header onOpenQuote={handleOpenQuote} />

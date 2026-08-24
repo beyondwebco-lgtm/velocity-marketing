@@ -27,7 +27,7 @@ export const Footer = ({ onOpenQuote }) => {
                 <span className="font-extrabold text-xl tracking-tight text-white group-hover:text-blue-400 transition-colors">
                   VELOCITY <span className="font-light text-slate-400">MARKETING</span>
                 </span>
-                <span className="text-[10px] tracking-widest uppercase text-slate-500 font-mono font-bold">
+                <span className="text-[10px] tracking-widest uppercase text-slate-400 font-mono font-bold">
                   On-Ground Execution Studio
                 </span>
               </div>
