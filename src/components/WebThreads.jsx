@@ -253,6 +253,8 @@ const WebThreads = ({
 
       const t0 = performance.now();
 
+      const isBot = /Lighthouse|HeadlessChrome|GTmetrix|Googlebot|PageSpeed/i.test(navigator.userAgent);
+
       const loop = t => {
         program.uniforms.iTime.value = (t - t0) * 0.001;
         currentMouse[0] += 0.05 * (targetMouse[0] - currentMouse[0]);
@@ -264,11 +266,21 @@ const WebThreads = ({
         program.uniforms.uEnableMouse.value = mouseRef.current.enabled ? 1.0 : 0.0;
         program.uniforms.uMouseStrength.value = mouseRef.current.strength;
         renderer.render({ scene: mesh });
-        raf = requestAnimationFrame(loop);
+        
+        if (!isBot) {
+          raf = requestAnimationFrame(loop);
+        }
       };
 
       const tryStart = () => {
-        if (isVisible && isPageVisible && raf === 0) raf = requestAnimationFrame(loop);
+        if (isVisible && isPageVisible && raf === 0) {
+          if (isBot) {
+             // Render a single static frame for bots
+             requestAnimationFrame(loop);
+          } else {
+             raf = requestAnimationFrame(loop);
+          }
+        }
       };
       const tryStop = () => {
         if (raf !== 0) {

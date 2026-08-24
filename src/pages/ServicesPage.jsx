@@ -63,9 +63,6 @@ export const ServicesPage = ({ isStandalone = true }) => {
                         loading="lazy"
                         className="w-full h-full max-h-[280px] object-contain group-hover:scale-[1.02] transition-transform duration-500" 
                       />
-                      <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full border border-slate-200 text-xs font-mono font-bold text-blue-700 shadow-sm">
-                        {service.id}
-                      </div>
                     </div>
                   )}
 
