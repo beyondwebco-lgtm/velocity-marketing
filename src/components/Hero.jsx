@@ -8,14 +8,23 @@ const WebThreads = lazy(() => import('./WebThreads'));
 
 export const Hero = ({ onOpenQuote }) => {
   const [videoSrc, setVideoSrc] = React.useState('');
+  const [loadBg, setLoadBg] = React.useState(false);
 
   React.useEffect(() => {
-    // Defer loading and play of the heavy mp4 video to avoid blocking startup main-thread
     const timer = setTimeout(() => {
-      setVideoSrc('/assets/Company_Logo.webp'); // Fallback / Poster or actual MP4
+      setVideoSrc('/assets/Company_Logo.webp');
       setVideoSrc('/assets/Company_Logo.webm');
     }, 3500);
-    return () => clearTimeout(timer);
+    
+    // Defer the heavy WebGL chunk until after initial page load
+    const bgTimer = setTimeout(() => {
+      setLoadBg(true);
+    }, 1500);
+    
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(bgTimer);
+    };
   }, []);
 
   return (
@@ -25,7 +34,7 @@ export const Hero = ({ onOpenQuote }) => {
     >
       {/* ── WebThreads Background Layer ── */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        {!isBot() && (
+        {(loadBg && !isBot()) && (
           <Suspense fallback={<div className="w-full h-full bg-slate-50" />}>
           <WebThreads
             color1="#2563EB"
