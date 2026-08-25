@@ -32,6 +32,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"></noscript>
+    <link rel="preload" href="/assets/Company_Logo.webp" as="image">
     <!-- Structured Data -->
     <script type="application/ld+json">
     {
@@ -93,7 +94,30 @@
     </script>
   </head>
   <body class="bg-[#F8FAFC] text-[#0F172A] font-sans antialiased selection:bg-[#2563EB] selection:text-white">
-    <div id="root"></div>
+    <div id="root">
+      <style>
+        #initial-loader {
+          position: fixed; inset: 0; z-index: 9999;
+          background-color: #020617; /* slate-950 */
+          display: flex; flex-direction: column; align-items: center; justify-content: center;
+        }
+        .pulse-ring {
+          position: absolute; width: 11rem; height: 11rem; border-radius: 50%;
+          border: 1px solid rgba(59, 130, 246, 0.2);
+          animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+        @keyframes ping {
+          75%, 100% { transform: scale(1.5); opacity: 0; }
+        }
+        .logo-img { width: 5.75rem; height: 5.75rem; object-fit: contain; }
+      </style>
+      <div id="initial-loader">
+        <div style="position: relative; display: flex; align-items: center; justify-content: center;">
+          <div class="pulse-ring"></div>
+          <img src="/assets/Company_Logo.webp" alt="Loading" class="logo-img" />
+        </div>
+      </div>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
