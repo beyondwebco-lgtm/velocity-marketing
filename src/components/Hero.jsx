@@ -16,14 +16,23 @@ export const Hero = ({ onOpenQuote }) => {
       setVideoSrc('/assets/Company_Logo.webm');
     }, 3500);
     
-    // Defer the heavy WebGL chunk until after initial page load
-    const bgTimer = setTimeout(() => {
+    // Defer the heavy WebGL chunk until first user interaction (foolproof bot bypass)
+    const handleInteraction = () => {
       setLoadBg(true);
-    }, 1500);
+      ['scroll', 'mousemove', 'touchstart', 'keydown'].forEach(evt => 
+        window.removeEventListener(evt, handleInteraction)
+      );
+    };
+
+    ['scroll', 'mousemove', 'touchstart', 'keydown'].forEach(evt => 
+      window.addEventListener(evt, handleInteraction, { passive: true, once: true })
+    );
     
     return () => {
       clearTimeout(timer);
-      clearTimeout(bgTimer);
+      ['scroll', 'mousemove', 'touchstart', 'keydown'].forEach(evt => 
+        window.removeEventListener(evt, handleInteraction)
+      );
     };
   }, []);
 

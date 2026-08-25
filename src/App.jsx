@@ -3,9 +3,10 @@ import { Routes, Route } from 'react-router-dom';
 import { Preloader } from './components/Preloader';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
-import { ProposalModal } from './components/ProposalModal';
-import { Footer } from './components/Footer';
-import { WhatsAppButton } from './components/WhatsAppButton';
+
+const ProposalModal = lazy(() => import('./components/ProposalModal').then(module => ({ default: module.ProposalModal })));
+const Footer = lazy(() => import('./components/Footer').then(module => ({ default: module.Footer })));
+const WhatsAppButton = lazy(() => import('./components/WhatsAppButton').then(module => ({ default: module.WhatsAppButton })));
 
 const Services = lazy(() => import('./components/Services').then(module => ({ default: module.Services })));
 const AboutUsPage = lazy(() => import('./pages/AboutUsPage').then(module => ({ default: module.AboutUsPage })));
@@ -26,10 +27,14 @@ const IntersectionDeferred = ({ children, height = '300px' }) => {
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
-        setLoad(true);
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(() => setLoad(true));
+        } else {
+          setTimeout(() => setLoad(true), 50);
+        }
         observer.disconnect();
       }
-    }, { rootMargin: '300px' });
+    }, { rootMargin: '50px' });
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
@@ -150,14 +155,16 @@ export function App() {
         <Route path="/process" element={<Suspense fallback={<div className="h-screen flex items-center justify-center">Loading...</div>}><ProcessPage /></Suspense>} />
       </Routes>
 
-      {/* Footer */}
-      <Footer onOpenQuote={handleOpenQuote} />
-
-      {/* WhatsApp Floating Button */}
-      <WhatsAppButton />
+      {/* Footer and WhatsApp Button */}
+      <Suspense fallback={null}>
+        <Footer onOpenQuote={handleOpenQuote} />
+        <WhatsAppButton />
+      </Suspense>
 
       {/* Interactive Campaign Proposal Modal */}
-      <ProposalModal isOpen={isQuoteModalOpen} onClose={handleCloseQuote} />
+      <Suspense fallback={null}>
+        <ProposalModal isOpen={isQuoteModalOpen} onClose={handleCloseQuote} />
+      </Suspense>
     </div>
   );
 }
