@@ -5,11 +5,10 @@ export const Preloader = ({ onLoaded }) => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    // Simulate loading progress, but bypass for Lighthouse/Bots instantly
-    const bot = isBot();
-    const duration = bot ? 0 : 1200; // 1.2 seconds for real users, 0 for bots
-    const interval = bot ? 1 : 20; 
-    const steps = duration === 0 ? 1 : duration / interval;
+    // Ultra-fast duration so it finishes well under 1 second for FCP metrics
+    const duration = 300; 
+    const interval = 10; 
+    const steps = duration / interval;
     let currentStep = 0;
 
     const timer = setInterval(() => {
@@ -19,10 +18,9 @@ export const Preloader = ({ onLoaded }) => {
 
       if (currentStep >= steps) {
         clearInterval(timer);
-        // Add a slight delay before triggering onLoaded so user sees 100%
         setTimeout(() => {
           if (onLoaded) onLoaded();
-        }, 200);
+        }, 50); // slight pause at 100%
       }
     }, interval);
 
