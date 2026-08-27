@@ -71,9 +71,13 @@ export const ContactSection = ({ onOpenQuote }) => {
                   <Phone className="w-4 h-4 text-white" />
                   <span>{COMPANY_INFO.phone}</span>
                 </div>
-                <div className="flex items-center space-x-2">
-                  <Mail className="w-4 h-4 text-white" />
-                  <span>{COMPANY_INFO.email}</span>
+                <div className="flex items-start space-x-2">
+                  <Mail className="w-4 h-4 text-white mt-1" />
+                  <div className="flex flex-col space-y-1">
+                    {COMPANY_INFO.emails.map((email, idx) => (
+                      <span key={idx}>{email}</span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
@@ -86,7 +90,7 @@ export const ContactSection = ({ onOpenQuote }) => {
                 {CTA_SECTION.primaryButton} &rarr;
               </button>
               <a
-                href={`mailto:${COMPANY_INFO.email}`}
+                href={`mailto:${COMPANY_INFO.emails[0]}`}
                 className="px-8 py-4 rounded-full bg-blue-800 hover:bg-blue-900 text-white border border-blue-600 font-bold text-sm uppercase tracking-wider text-center transition-all duration-300"
               >
                 {CTA_SECTION.secondaryButton}

@@ -28,7 +28,11 @@ export const COMPANY_INFO = {
   mission: "Our mission is to provide end-to-end marketing and sales execution services that help brands reach the right customers at the right time.\n\nThrough operational excellence, technology-driven reporting, skilled manpower, and nationwide coverage, we aim to create measurable value for every client while maintaining the highest standards of quality, transparency, and professionalism.",
 
   phone: "+91 98491 41943",
-  email: "hello@velocitymarketing.in",
+  emails: [
+    "hello@velocitymarketing.in",
+    "contact@velocitymarketingagency.in",
+    "enquiry@velocitymarketingagency.in"
+  ],
   address: "H. No. 5/497 Near Hitec City, Kondapur, Hyderabad, Telangana 500085",
   mapLink: "https://maps.app.goo.gl/D9v8wcQZhbNSv2jw6",
   

@@ -93,10 +93,14 @@ export const Footer = ({ onOpenQuote }) => {
                 </a>
               </div>
               <div>
-                <span className="text-slate-400 block font-mono text-[10px]">EMAIL</span>
-                <a href={`mailto:${COMPANY_INFO.email}`} className="text-white hover:text-blue-400 font-mono font-bold">
-                  {COMPANY_INFO.email}
-                </a>
+                <span className="text-slate-400 block font-mono text-[10px] mb-1">EMAIL</span>
+                <div className="space-y-1.5">
+                  {COMPANY_INFO.emails.map((email, idx) => (
+                    <a key={idx} href={`mailto:${email}`} className="text-white hover:text-blue-400 font-mono font-bold block truncate">
+                      {email}
+                    </a>
+                  ))}
+                </div>
               </div>
               <button
                 onClick={onOpenQuote}
